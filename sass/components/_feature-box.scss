@@ -1,0 +1,25 @@
+.feature-box {
+  background-color: rgba($color-white, 0.92);
+  padding: 3rem 2.5rem;
+  text-align: center;
+  border-radius: 6px;
+  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+  transition: all 0.3s;
+  border-top: 4px solid $color-gold;
+  min-height: 28rem;
+
+  &:hover {
+    transform: translateY(-1rem) scale(1.02);
+    box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
+  }
+
+  .heading-tertiary {
+    color: $color-primary;
+  }
+
+  &__text {
+    font-size: 1.5rem;
+    line-height: 2;
+    color: $color-grey-dark-3;
+  }
+}

@@ -1,0 +1,58 @@
+.composition {
+  position: relative;
+
+  &__photo {
+    width: 55%;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.4);
+    border-radius: 2px;
+    position: absolute;
+    z-index: 10;
+    transition: all 0.2s;
+    outline-offset: 2rem;
+
+    &--p1 {
+      // در حالت RTL عکس اول را به جای سمت چپ، سمت راست تنظیم می‌کنیم
+      right: 1rem;
+      top: -4rem;
+
+      @media only screen and (max-width: 56.25em) {
+        top: 0;
+        transform: scale(1.2);
+      }
+    }
+
+    &--p2 {
+      // عکس دوم به سمت چپ منتقل می‌شود تا روی عکس‌ها نیافتد
+      left: -2rem;
+      top: 4rem;
+
+      @media only screen and (max-width: 56.25em) {
+        top: -1rem;
+        transform: scale(1.1);
+        z-index: 100;
+      }
+    }
+
+    &--p3 {
+      // عکس سوم در مرکز و پایین‌تر قرار می‌گیرد
+      right: 23%;
+      top: 16rem;
+
+      @media only screen and (max-width: 56.25em) {
+        top: 3rem;
+        right: -2rem;
+      }
+    }
+
+    &:hover {
+      outline: 1.5rem solid $color-primary;
+      transform: scale(1.05) translateY(-0.5rem);
+      box-shadow: 0 2.5rem 4rem rgba($color-black, 0.5);
+      z-index: 20;
+    }
+  }
+
+  &:hover &__photo:not(:hover) {
+    transform: scale(0.95);
+  }
+}
