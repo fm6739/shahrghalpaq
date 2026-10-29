@@ -19,3 +19,20 @@
   padding: 25rem 0 15rem 0;
   margin-top: -10rem;
 }
+.section-stories {
+  position: relative;
+  padding: 15rem 0;
+
+  // استفاده از رنگ سفید بسیار شفاف برای روشن کردن فضا
+  background-image:
+    linear-gradient(
+      to right bottom,
+      rgba($color-white, 0.85),
+      rgba($color-white, 0.85)
+    ),
+    url("../img/hero.webp");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; // این باعث میشه موقع اسکرول، عکس ثابت بمونه که خیلی شیکه
+}
