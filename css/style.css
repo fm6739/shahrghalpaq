@@ -301,6 +301,13 @@ body {
 .btn--gold::after {
   background-color: #9f7d24;
 }
+.btn--green {
+  background-color: #0f5132;
+  color: #fff;
+}
+.btn--green::after {
+  background-color: #0f5132;
+}
 .btn::after {
   content: "";
   display: inline-block;

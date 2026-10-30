@@ -42,6 +42,14 @@
       background-color: $color-gold-dark;
     }
   }
+  &--green {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &::after {
+      background-color: $color-primary;
+    }
+  }
 
   // لایه مخفی که دقیقا هم‌اندازه و زیر دکمه قرار می‌گیره تا افکت انفجاری ساخته بشه
   &::after {
