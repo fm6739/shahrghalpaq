@@ -52,7 +52,6 @@
   background-image:
     linear-gradient(
       -105deg,
-      // زاویه معکوس برای راست‌چین (RTL)
       rgba($color-white, 0.9) 0%,
       rgba($color-white, 0.9) 50%,
       transparent 50%
@@ -63,9 +62,44 @@
   border-radius: 3px;
   box-shadow: 0 1.5rem 4rem rgba($color-black, 0.2);
 
+  // در تبلت افقی (tab-land) گرادیانت به جای ۵۰٪، ۶۵٪ از کادر را سفید می‌کند
+  @include respond(tab-land) {
+    background-image:
+      linear-gradient(
+        -105deg,
+        rgba($color-white, 0.9) 0%,
+        rgba($color-white, 0.9) 65%,
+        transparent 65%
+      ),
+      url(../img/hero.webp);
+  }
+
+  // در تبلت عمودی و موبایل، کل کادر سفید شفاف می‌شود تا متن کاملاً خوانا بماند
+  @include respond(tab-port) {
+    background-image:
+      linear-gradient(
+        to right,
+        rgba($color-white, 0.92) 0%,
+        rgba($color-white, 0.92) 100%
+      ),
+      url(../img/hero.webp);
+  }
+
   &__form {
     width: 50%;
     padding: 6rem;
-    // فرم در RTL به طور طبیعی سمت راست قرار می‌گیرد
+
+    @include respond(tab-land) {
+      width: 65%;
+    }
+
+    @include respond(tab-port) {
+      width: 100%;
+      padding: 4rem;
+    }
+
+    @include respond(phone) {
+      padding: 3rem 2rem;
+    }
   }
 }
