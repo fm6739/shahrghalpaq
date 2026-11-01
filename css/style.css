@@ -1,3 +1,12 @@
+@charset "UTF-8";
+/*
+راهنمای نقاط شکست (Breakpoints):
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800]   نقطه پیش‌فرض و فعلی کدهای ما
+1800px + :      Big desktop
+*/
 @keyframes moveInLeft {
   0% {
     opacity: 0;
@@ -44,6 +53,21 @@
 
 html {
   font-size: 62.5%;
+}
+@media only screen and (max-width: 75em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+@media only screen and (max-width: 56.25em) {
+  html {
+    font-size: 50%;
+  }
+}
+@media only screen and (min-width: 112.5em) {
+  html {
+    font-size: 75%;
+  }
 }
 
 body {
@@ -371,6 +395,13 @@ body {
 .composition {
   position: relative;
 }
+@media only screen and (max-width: 56.25em) {
+  .composition::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
 .composition__photo {
   width: 55%;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
@@ -380,42 +411,100 @@ body {
   transition: all 0.2s;
   outline-offset: 2rem;
 }
+@media only screen and (max-width: 56.25em) {
+  .composition__photo {
+    float: right;
+    position: relative;
+    width: 33.33333333%;
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.2);
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .composition__photo {
+    float: none;
+    position: relative;
+    width: 65%;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.25);
+  }
+}
 .composition__photo--p1 {
-  right: 1rem;
-  top: -4rem;
+  right: -2rem;
+  top: -2rem;
 }
 @media only screen and (max-width: 56.25em) {
   .composition__photo--p1 {
     top: 0;
-    transform: scale(1.2);
+    right: 0;
+    left: auto;
+    transform: scale(1.15);
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .composition__photo--p1 {
+    transform: scale(1) translateX(3rem);
+    margin-bottom: -3rem;
+    z-index: 10;
   }
 }
 .composition__photo--p2 {
-  left: -2rem;
-  top: 4rem;
+  left: -3rem;
+  top: 3rem;
 }
 @media only screen and (max-width: 56.25em) {
   .composition__photo--p2 {
     top: -1rem;
-    transform: scale(1.1);
+    left: auto;
+    right: 0;
+    transform: scale(1.25);
     z-index: 100;
   }
 }
+@media only screen and (max-width: 37.5em) {
+  .composition__photo--p2 {
+    top: 0;
+    transform: scale(1.05) translateX(-3rem);
+    margin-bottom: -3rem;
+    z-index: 20;
+  }
+}
 .composition__photo--p3 {
-  right: 23%;
-  top: 16rem;
+  right: 22%;
+  top: 15rem;
 }
 @media only screen and (max-width: 56.25em) {
   .composition__photo--p3 {
-    top: 3rem;
-    right: -2rem;
+    top: 1rem;
+    right: 0;
+    left: auto;
+    transform: scale(1.1);
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .composition__photo--p3 {
+    top: 0;
+    transform: scale(1);
+    z-index: 15;
   }
 }
 .composition__photo:hover {
-  outline: 1.5rem solid #0f5132;
+  outline: 1.3rem solid #9f7d24;
   transform: scale(1.05) translateY(-0.5rem);
   box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
   z-index: 20;
+}
+@media only screen and (max-width: 56.25em) {
+  .composition__photo:hover {
+    outline-offset: 1rem;
+    outline: 1rem solid #9f7d24;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .composition__photo:hover {
+    outline-offset: 1rem;
+    outline: 0.8rem solid #9f7d24;
+  }
 }
 .composition:hover .composition__photo:not(:hover) {
   transform: scale(0.95);
@@ -806,6 +895,11 @@ body {
 .row:not(:last-child) {
   margin-bottom: 8rem;
 }
+@media only screen and (max-width: 56.25em) {
+  .row:not(:last-child) {
+    margin-bottom: 6rem;
+  }
+}
 .row::after {
   content: "";
   display: table;
@@ -816,6 +910,13 @@ body {
 }
 .row [class^=col-]:not(:last-child) {
   margin-left: 6rem;
+}
+@media only screen and (max-width: 56.25em) {
+  .row [class^=col-] {
+    margin-left: 0 !important;
+    margin-bottom: 6rem;
+    width: 100% !important;
+  }
 }
 .row .col-1-of-2 {
   width: calc((100% - 6rem) / 2);
@@ -835,6 +936,12 @@ body {
 .row .col-3-of-4 {
   width: calc(3 * (100% - 3 * 6rem) / 4 + 2 * 6rem);
 }
+@media only screen and (max-width: 56.25em) {
+  .row {
+    max-width: 50rem;
+    padding: 0 3rem;
+  }
+}
 
 .header {
   height: 95vh;
@@ -843,6 +950,12 @@ body {
   background-position: top;
   position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+@media only screen and (max-width: 37.5em) {
+  .header {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  }
 }
 .header__logo-box {
   position: absolute;

@@ -4,6 +4,9 @@
 
   &:not(:last-child) {
     margin-bottom: $gutter-vertical;
+    @include respond(tab-port) {
+      margin-bottom: $gutter-vertical-small;
+    }
   }
 
   // تکنیک مشهور Clearfix برای حل مشکل collapse شدن ارتفاع در floatها
@@ -19,6 +22,11 @@
 
     &:not(:last-child) {
       margin-left: $gutter-horizontal; // فاصله بین ستون‌ها در حالت راست‌به‌چپ
+    }
+    @include respond(tab-port) {
+      margin-left: 0 !important; // فاصله افقی بین ستون‌ها رو صفر می‌کنیم
+      margin-bottom: $gutter-vertical-small; // فاصله عمودی بین کارت‌ها در تبلت/موبایل
+      width: 100% !important; // هر ستون کل عرض صفحه رو پر کنه و بیاد زیر ستون قبلی!
     }
   }
 
@@ -50,5 +58,10 @@
     width: calc(
       3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal}
     );
+  }
+  // در تبلت و موبایل حداکثر عرض ردیف جمع‌تر بشه و پدینگ داشته باشه
+  @include respond(tab-port) {
+    max-width: 50rem;
+    padding: 0 3rem;
   }
 }

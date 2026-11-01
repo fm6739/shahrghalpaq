@@ -1,6 +1,11 @@
 .composition {
   position: relative;
 
+  // برای اینکه وقتی عکس‌ها در تبلت فلوت می‌شوند، کانتینر جمع نشود
+  @include respond(tab-port) {
+    @include clearfix;
+  }
+
   &__photo {
     width: 55%;
     box-shadow: 0 1.5rem 4rem rgba($color-black, 0.4);
@@ -10,45 +15,90 @@
     transition: all 0.2s;
     outline-offset: 2rem;
 
-    &--p1 {
-      // در حالت RTL عکس اول را به جای سمت چپ، سمت راست تنظیم می‌کنیم
-      right: 1rem;
-      top: -4rem;
+    @include respond(tab-port) {
+      float: right;
+      position: relative;
+      width: 33.33333333%;
+      box-shadow: 0 1.5rem 3rem rgba($color-black, 0.2);
+    }
+    @include respond(phone) {
+      float: none;
+      position: relative;
+      width: 65%;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.25);
+    }
 
-      @media only screen and (max-width: 56.25em) {
+    &--p1 {
+      right: -2rem;
+      top: -2rem;
+
+      @include respond(tab-port) {
         top: 0;
-        transform: scale(1.2);
+        right: 0;
+        left: auto;
+        transform: scale(1.15);
+      }
+      @include respond(phone) {
+        transform: scale(1) translateX(3rem);
+        margin-bottom: -3rem;
+        z-index: 10;
       }
     }
 
     &--p2 {
-      // عکس دوم به سمت چپ منتقل می‌شود تا روی عکس‌ها نیافتد
-      left: -2rem;
-      top: 4rem;
+      left: -3rem;
+      top: 3rem;
 
-      @media only screen and (max-width: 56.25em) {
+      @include respond(tab-port) {
         top: -1rem;
-        transform: scale(1.1);
+        left: auto;
+        right: 0;
+        transform: scale(1.25);
         z-index: 100;
+      }
+      @include respond(phone) {
+        top: 0;
+        transform: scale(1.05) translateX(-3rem);
+        margin-bottom: -3rem;
+        z-index: 20;
       }
     }
 
     &--p3 {
-      // عکس سوم در مرکز و پایین‌تر قرار می‌گیرد
-      right: 23%;
-      top: 16rem;
+      right: 22%;
+      top: 15rem;
 
-      @media only screen and (max-width: 56.25em) {
-        top: 3rem;
-        right: -2rem;
+      @include respond(tab-port) {
+        top: 1rem;
+        right: 0;
+        left: auto;
+        transform: scale(1.1);
+      }
+      @include respond(phone) {
+        top: 0;
+        transform: scale(1);
+        z-index: 15;
       }
     }
-
     &:hover {
-      outline: 1.5rem solid $color-primary;
+      outline: 1.3rem solid $color-gold-dark; // پیش‌فرض دسکتاپ
       transform: scale(1.05) translateY(-0.5rem);
       box-shadow: 0 2.5rem 4rem rgba($color-black, 0.5);
       z-index: 20;
+
+      // تنظیمات ظریف‌تر تبلت
+      @include respond(tab-port) {
+        outline-offset: 1rem;
+        outline: 1rem solid $color-gold-dark;
+      }
+
+      // تنظیمات لوکس و ظریف موبایل
+      @include respond(phone) {
+        outline-offset: 1rem;
+        outline: 0.8rem solid $color-gold-dark;
+      }
     }
   }
 
