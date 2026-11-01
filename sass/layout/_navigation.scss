@@ -17,6 +17,16 @@
     box-shadow: 0 1rem 3rem rgba($color-black, 0.15);
     text-align: center;
     cursor: pointer;
+
+    @include respond(tab-port) {
+      top: 4rem;
+      left: 4rem;
+    }
+
+    @include respond(phone) {
+      top: 3rem;
+      left: 3rem;
+    }
   }
 
   // دایره‌ی پس‌زمینه سبز که قراره موقع کلیک بزرگ بشه و کل صفحه رو بگیره
@@ -33,6 +43,16 @@
     );
     z-index: 1000;
     transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+
+    @include respond(tab-port) {
+      top: 4.5rem;
+      left: 4.5rem;
+    }
+
+    @include respond(phone) {
+      top: 3.5rem;
+      left: 3.5rem;
+    }
   }
 
   // کادر تمام‌صفحه‌ای که منو داخلش قرار می‌گیره
@@ -69,7 +89,7 @@
     &:link,
     &:visited {
       display: inline-block;
-      font-size: 3rem;
+      font-size: 3.5rem; // در دسکتاپ بزرگ، باشکوه و لوکس
       font-weight: 300;
       padding: 1rem 2rem;
       color: $color-white;
@@ -83,6 +103,16 @@
       );
       background-size: 230%;
       transition: all 0.4s;
+
+      @include respond(tab-port) {
+        font-size: 2.8rem;
+        padding: 0.8rem 1.8rem;
+      }
+
+      @include respond(phone) {
+        font-size: 2.2rem;
+        padding: 0.6rem 1.2rem;
+      }
 
       span {
         margin-left: 1.5rem;
@@ -100,6 +130,7 @@
       transform: translateX(-1rem); // حرکت نرم به چپ در حالت هاور
     }
   }
+
   // عملکرد باز شدن منو وقتی چک‌باکس انتخاب می‌شود
   &__checkbox:checked ~ &__background {
     transform: scale(80);
@@ -109,6 +140,7 @@
     opacity: 1;
     width: 100%;
   }
+
   // آیکون همبرگری
   &__icon {
     position: relative;
