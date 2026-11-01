@@ -836,35 +836,71 @@ body {
 .story {
   width: 75%;
   margin: 0 auto;
-  box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.14);
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 3px;
   padding: 6rem;
   padding-right: 9rem;
-  padding-left: 6rem;
   font-size: 1.6rem;
-  transform: skewX(-12deg);
+  transform: skewX(12deg);
+}
+@media only screen and (max-width: 56.25em) {
+  .story {
+    width: 100%;
+    padding: 4rem;
+    padding-right: 7rem;
+    transform: skewX(0);
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .story {
+    transform: skewX(0);
+    padding: 3rem;
+  }
 }
 .story__shape {
   width: 15rem;
   height: 15rem;
   float: right;
+  -webkit-shape-outside: circle(50% at 50% 50%);
   shape-outside: circle(50% at 50% 50%);
+  -webkit-clip-path: circle(50% at 50% 50%);
   clip-path: circle(50% at 50% 50%);
-  transform: translateX(3rem) skewX(12deg);
+  transform: translateX(3rem) skewX(-12deg);
   position: relative;
   overflow: hidden;
-  border-radius: 50%;
+}
+@media only screen and (max-width: 56.25em) {
+  .story__shape {
+    transform: translateX(3rem) skewX(0);
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .story__shape {
+    float: none;
+    margin: 0 auto 2.5rem auto;
+    transform: translateX(0) skewX(0);
+  }
 }
 .story__img {
   height: 100%;
   transform: translateX(-4rem) scale(1.4);
   backface-visibility: hidden;
-  transition: all 0.5s;
+  transition: all 0.5s ease;
 }
 .story__text {
-  transform: skewX(12deg);
-  text-align: right;
+  transform: skewX(-12deg);
+}
+@media only screen and (max-width: 56.25em) {
+  .story__text {
+    transform: skewX(0);
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .story__text {
+    transform: skewX(0);
+    text-align: center;
+  }
 }
 .story__caption {
   position: absolute;
@@ -876,7 +912,7 @@ body {
   font-size: 1.7rem;
   text-align: center;
   opacity: 0;
-  transition: all 0.5s;
+  transition: all 0.5s ease;
   backface-visibility: hidden;
 }
 .story:hover .story__caption {
@@ -913,33 +949,87 @@ body {
 }
 @media only screen and (max-width: 56.25em) {
   .row [class^=col-] {
-    margin-left: 0 !important;
     margin-bottom: 6rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .row [class^=col-] {
+    margin-left: 0 !important;
     width: 100% !important;
   }
 }
 .row .col-1-of-2 {
   width: calc((100% - 6rem) / 2);
 }
+@media only screen and (max-width: 56.25em) {
+  .row .col-1-of-2 {
+    width: 100%;
+  }
+}
 .row .col-1-of-3 {
   width: calc((100% - 2 * 6rem) / 3);
+}
+@media only screen and (max-width: 56.25em) {
+  .row .col-1-of-3 {
+    width: 100%;
+  }
 }
 .row .col-2-of-3 {
   width: calc(2 * (100% - 2 * 6rem) / 3 + 6rem);
 }
+@media only screen and (max-width: 56.25em) {
+  .row .col-2-of-3 {
+    width: 100%;
+  }
+}
 .row .col-1-of-4 {
   width: calc((100% - 3 * 6rem) / 4);
 }
+@media only screen and (max-width: 56.25em) {
+  .row .col-1-of-4 {
+    width: calc((100% - 6rem) / 2) !important;
+  }
+  .row .col-1-of-4:nth-child(2n) {
+    margin-left: 0 !important;
+  }
+  .row .col-1-of-4:nth-child(-n+2) {
+    margin-bottom: 6rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .row .col-1-of-4 {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+  .row .col-1-of-4:not(:last-child) {
+    margin-bottom: 6rem;
+  }
+}
 .row .col-2-of-4 {
   width: calc(2 * (100% - 3 * 6rem) / 4 + 6rem);
+}
+@media only screen and (max-width: 56.25em) {
+  .row .col-2-of-4 {
+    width: 100%;
+  }
 }
 .row .col-3-of-4 {
   width: calc(3 * (100% - 3 * 6rem) / 4 + 2 * 6rem);
 }
 @media only screen and (max-width: 56.25em) {
+  .row .col-3-of-4 {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 56.25em) {
+  .row {
+    max-width: 80rem;
+    padding: 0 3rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
   .row {
     max-width: 50rem;
-    padding: 0 3rem;
   }
 }
 

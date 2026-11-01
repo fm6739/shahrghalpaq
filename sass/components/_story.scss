@@ -1,37 +1,71 @@
 .story {
   width: 75%;
   margin: 0 auto;
-  box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+  box-shadow: 0 3rem 6rem rgba($color-black, 0.14);
   background-color: rgba($color-white, 0.6);
   border-radius: 3px;
   padding: 6rem;
-  padding-right: 9rem;
-  padding-left: 6rem;
+  padding-right: 9rem; // برای زبان فارسی و فاصله گرفتن از شکل دایره سمت راست
   font-size: $default-font-size;
-  transform: skewX(-12deg); // معکوس برای RTL
+  transform: skewX(12deg); // کج شدن کل کادر مستطیل
+
+  // ریسپانسیو در تبلت عمودی
+  @include respond(tab-port) {
+    width: 100%;
+    padding: 4rem;
+    padding-right: 7rem;
+    transform: skewX(0); // حذف کجی در تبلت
+  }
+
+  // ریسپانسیو در موبایل (زیر 600 پیکسل و صفحه‌های باریک مثل 331px)
+  @include respond(phone) {
+    transform: skewX(0);
+    padding: 3rem;
+  }
 
   &__shape {
     width: 15rem;
     height: 15rem;
-    float: right;
-    shape-outside: circle(50% at 50% 50%);
-    clip-path: circle(50% at 50% 50%);
-    transform: translateX(3rem) skewX(12deg);
+    float: right; // شناور شدن دایره در سمت راست
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%); // متن دور این دایره می‌پیچد
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%); // برش عکس به شکل دایره
+    transform: translateX(3rem) skewX(-12deg); // خنثی کردن کجی در دسکتاپ
     position: relative;
     overflow: hidden;
-    border-radius: 50%;
+
+    @include respond(tab-port) {
+      transform: translateX(3rem) skewX(0);
+    }
+
+    // در موبایل شناوری حذف میشه و عکس میاد وسط بالا
+    @include respond(phone) {
+      float: none;
+      margin: 0 auto 2.5rem auto;
+      transform: translateX(0) skewX(0);
+    }
   }
 
   &__img {
     height: 100%;
     transform: translateX(-4rem) scale(1.4);
     backface-visibility: hidden;
-    transition: all 0.5s;
+    transition: all 0.5s ease;
   }
 
   &__text {
-    transform: skewX(12deg);
-    text-align: right;
+    transform: skewX(-12deg); // خنثی کردن کجی برای خوانا ماندن متن فارسی
+
+    @include respond(tab-port) {
+      transform: skewX(0);
+    }
+
+    // در موبایل متن مرتب و در مرکز قرار می‌گیرد
+    @include respond(phone) {
+      transform: skewX(0);
+      text-align: center;
+    }
   }
 
   &__caption {
@@ -44,10 +78,11 @@
     font-size: 1.7rem;
     text-align: center;
     opacity: 0;
-    transition: all 0.5s;
+    transition: all 0.5s ease;
     backface-visibility: hidden;
   }
 
+  // افکت هاور روی کارت نظر مشتری
   &:hover &__caption {
     opacity: 1;
     transform: translate(-50%, -50%);
