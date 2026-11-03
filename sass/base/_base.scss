@@ -32,5 +32,9 @@ body {
   font-weight: 400;
   line-height: 1.7;
   color: $color-grey-dark;
-  padding: 3rem; // همون کادر سفید دور تا دور سایت که یوناس می‌ذاره
+  padding: 3rem; // حاشیه دور دسکتاپ
+
+  @include respond(tab-port) {
+    padding: 0; // توی تبلت عمودی و موبایل حاشیه قاب حذف میشه
+  }
 }

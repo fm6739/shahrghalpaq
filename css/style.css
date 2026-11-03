@@ -78,7 +78,17 @@ body {
   color: #777;
   padding: 3rem;
 }
+@media only screen and (max-width: 56.25em) {
+  body {
+    padding: 0;
+  }
+}
 
+/* ==========================================================================
+   Typography Styles - سبک‌های تایپوگرافی سایت شهر قالپاق
+   طراحی‌شده با متدولوژی BEM و معماری Sass 7-1
+   کاملاً بهینه‌سازی‌شده برای رسم‌الخط و فونت فارسی (وزیرمتن)
+   ========================================================================== */
 body {
   font-family: "Vazirmatn", sans-serif;
   font-weight: 400;
@@ -88,41 +98,41 @@ body {
 
 .heading-primary {
   color: #fff;
-  text-transform: uppercase;
   backface-visibility: hidden;
   margin-bottom: 6rem;
 }
 .heading-primary--main {
   display: block;
-  font-size: 6rem;
+  font-size: 6.2rem;
   font-weight: 400;
-  letter-spacing: 1.5rem;
   animation-name: moveInLeft;
   animation-duration: 1s;
   animation-timing-function: ease-out;
 }
 @media only screen and (max-width: 56.25em) {
   .heading-primary--main {
-    font-size: 5rem;
-    letter-spacing: 1rem;
+    font-size: 5.2rem;
   }
 }
 @media only screen and (max-width: 37.5em) {
   .heading-primary--main {
-    font-size: 4rem;
-    letter-spacing: 0.5rem;
+    font-size: 3.8rem;
   }
 }
 .heading-primary--sub {
   display: block;
   font-size: 2rem;
   font-weight: 700;
-  letter-spacing: 0.75rem;
   animation: moveInRight 1s ease-out;
+}
+@media only screen and (max-width: 56.25em) {
+  .heading-primary--sub {
+    font-size: 1.8rem;
+  }
 }
 @media only screen and (max-width: 37.5em) {
   .heading-primary--sub {
-    letter-spacing: 0.4rem;
+    font-size: 1.7rem;
   }
 }
 
@@ -134,7 +144,6 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: 0.1rem;
   transition: all 0.2s;
 }
 @media only screen and (max-width: 56.25em) {
@@ -145,7 +154,6 @@ body {
 @media only screen and (max-width: 37.5em) {
   .heading-secondary {
     font-size: 2.5rem;
-    letter-spacing: 0;
   }
 }
 .heading-secondary:hover {
@@ -154,15 +162,28 @@ body {
 }
 
 .heading-tertiary {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 700;
+}
+@media only screen and (max-width: 56.25em) {
+  .heading-tertiary {
+    font-size: 1.7rem;
+  }
 }
 
 .paragraph {
   font-size: 1.6rem;
+  text-align: justify;
+  line-height: 1.8;
 }
 .paragraph:not(:last-child) {
   margin-bottom: 3rem;
+}
+@media only screen and (max-width: 56.25em) {
+  .paragraph {
+    text-align: right;
+    line-height: 1.7;
+  }
 }
 
 .u-margin-bottom-big {
@@ -860,9 +881,21 @@ body {
   filter: blur(3px) brightness(80%);
 }
 
+/* ==========================================================================
+   سیستم گرید اختصاصی بر پایه Float (طراحی واکنش‌گرا و راست‌چین)
+   ========================================================================== */
 .row {
   max-width: 114rem;
   margin: 0 auto;
+  /* --------------------------------------------------------------------------
+     تنظیمات عمومی ستون‌ها با سلکتور ویژگی (Attribute Selector)
+     -------------------------------------------------------------------------- */
+  /* --------------------------------------------------------------------------
+     محاسبه عرض ستون‌های کسری (Grid Columns)
+     -------------------------------------------------------------------------- */
+  /* --------------------------------------------------------------------------
+     تنظیمات حاشیه امن و حداکثر عرض ردیف در تبلت و موبایل
+     -------------------------------------------------------------------------- */
 }
 .row:not(:last-child) {
   margin-bottom: 8rem;
@@ -890,8 +923,8 @@ body {
 }
 @media only screen and (max-width: 37.5em) {
   .row [class^=col-] {
-    margin-left: 0 !important;
     width: 100% !important;
+    margin-left: 0 !important;
   }
 }
 .row .col-1-of-2 {
@@ -966,15 +999,29 @@ body {
 @media only screen and (max-width: 37.5em) {
   .row {
     max-width: 50rem;
+    padding: 0 2rem;
   }
 }
 
+/* ==========================================================================
+   بخش سربرگ اصلی سایت شهر قالپاق (Header Layout)
+   طراحی واکنش‌گرا با افکت زاویه‌دار (Clip-Path) و متناسب‌سازی موبایل
+   ========================================================================== */
 .header {
   height: 85vh;
   background-image: linear-gradient(to right bottom, rgba(25, 135, 84, 0.8), rgba(8, 51, 31, 0.8)), url(../img/hero.webp);
   background-size: cover;
   background-position: top;
   position: relative;
+  /* --------------------------------------------------------------------------
+     برش زاویه‌دار اختصاصی پایین هدر (با بررسی پشتیبانی مرورگر)
+     -------------------------------------------------------------------------- */
+  /* --------------------------------------------------------------------------
+     باکس نگهدارنده لوگو (راست‌چین شده برای زبان فارسی)
+     -------------------------------------------------------------------------- */
+  /* --------------------------------------------------------------------------
+     باکس عنوان و متون وسط هدر
+     -------------------------------------------------------------------------- */
 }
 @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
   .header {
@@ -1000,6 +1047,12 @@ body {
   top: 4rem;
   right: 4rem;
 }
+@media only screen and (max-width: 56.25em) {
+  .header__logo-box {
+    top: 3rem;
+    right: 3rem;
+  }
+}
 @media only screen and (max-width: 37.5em) {
   .header__logo-box {
     top: 2.5rem;
@@ -1023,15 +1076,54 @@ body {
   width: 90%;
 }
 
+/* ==========================================================================
+   پاورقی سایت شهر قالپاق (Footer Layout)
+   طراحی واکنش‌گرا، راست‌چین و متناسب‌سازی فاصله‌ها در موبایل و تبلت
+   ========================================================================== */
 .footer {
   background-color: #333;
   padding: 10rem 0;
   font-size: 1.4rem;
   color: #f7f7f7;
+  /* --------------------------------------------------------------------------
+     بخش لوگوی فوتر
+     -------------------------------------------------------------------------- */
+  /* --------------------------------------------------------------------------
+     عناوین ستون‌های فوتر
+     -------------------------------------------------------------------------- */
+  /* --------------------------------------------------------------------------
+     بخش‌های ناوبری، تماس و درباره ما
+     -------------------------------------------------------------------------- */
+  /* --------------------------------------------------------------------------
+     متن‌های توضیحات و اطلاعات تماس
+     -------------------------------------------------------------------------- */
+  /* --------------------------------------------------------------------------
+     حق نشر و کپی‌رایت
+     -------------------------------------------------------------------------- */
+}
+@media only screen and (max-width: 56.25em) {
+  .footer {
+    padding: 8rem 0;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .footer {
+    padding: 6rem 0;
+  }
 }
 .footer__logo-box {
   text-align: center;
   margin-bottom: 8rem;
+}
+@media only screen and (max-width: 56.25em) {
+  .footer__logo-box {
+    margin-bottom: 5rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .footer__logo-box {
+    margin-bottom: 4rem;
+  }
 }
 .footer__logo {
   width: 15rem;
@@ -1039,6 +1131,11 @@ body {
   border-radius: 50%;
   transition: all 0.3s ease;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.4);
+}
+@media only screen and (max-width: 37.5em) {
+  .footer__logo {
+    width: 12rem;
+  }
 }
 .footer__logo:hover {
   transform: scale(1.08);
@@ -1058,6 +1155,12 @@ body {
   border-top: 1px solid #666;
   padding-top: 2rem;
 }
+@media only screen and (max-width: 37.5em) {
+  .footer__navigation, .footer__contact, .footer__about {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+}
 .footer__list {
   list-style: none;
 }
@@ -1069,13 +1172,15 @@ body {
 }
 .footer__link:link, .footer__link:visited {
   color: #f7f7f7;
+  background-color: #333;
   text-decoration: none;
   display: inline-block;
-  transition: all 0.3s;
+  transition: all 0.2s ease;
 }
 .footer__link:hover, .footer__link:active {
   color: #c9a441;
-  transform: translateX(-5px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
+  transform: rotate(-5deg) scale(1.25);
 }
 .footer__text {
   line-height: 1.8;
@@ -1090,6 +1195,11 @@ body {
   line-height: 1.8;
   color: #eee;
   text-align: right;
+}
+@media only screen and (max-width: 37.5em) {
+  .footer__copyright {
+    text-align: center;
+  }
 }
 .footer__copyright a {
   color: #c9a441;
@@ -1270,12 +1380,33 @@ body {
   transform: rotate(-135deg);
 }
 
+/* ==========================================================================
+   صفحه اصلی سایت شهر قالپاق (Home Page Sections)
+   طراحی واکنش‌گرا، راست‌چین و بهینه‌سازی شده برای موبایل و تبلت
+   ========================================================================== */
+/* --------------------------------------------------------------------------
+   سکشن درباره ما / معرفی قالپاق خودروها
+   -------------------------------------------------------------------------- */
 .section-about {
   background-color: #f7f7f7;
   padding: 25rem 0;
   margin-top: -20vh;
 }
+@media only screen and (max-width: 56.25em) {
+  .section-about {
+    padding: 18rem 0 10rem 0;
+    margin-top: -15vh;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .section-about {
+    padding: 15rem 0 8rem 0;
+  }
+}
 
+/* --------------------------------------------------------------------------
+   سکشن ویژگی‌ها و مزایا (با فرم زاویه‌دار و شیب‌دار)
+   -------------------------------------------------------------------------- */
 .section-features {
   padding: 20rem 0 15rem 0;
   margin-top: -10rem;
@@ -1285,13 +1416,41 @@ body {
 .section-features > * {
   transform: skewY(7deg);
 }
+@media only screen and (max-width: 56.25em) {
+  .section-features {
+    padding: 10rem 0;
+    margin-top: -8rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .section-features {
+    padding: 8rem 0;
+  }
+}
 
+/* --------------------------------------------------------------------------
+   سکشن دسته‌بندی و خرید قالپاق‌ها (Tours / Products)
+   -------------------------------------------------------------------------- */
 .section-tours {
   background-color: #f7f7f7;
   padding: 25rem 0 15rem 0;
   margin-top: -10rem;
 }
+@media only screen and (max-width: 56.25em) {
+  .section-tours {
+    padding: 15rem 0 10rem 0;
+    margin-top: -8rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .section-tours {
+    padding: 12rem 0 8rem 0;
+  }
+}
 
+/* --------------------------------------------------------------------------
+   سکشن نظرات و تجربیات مشتریان (Stories)
+   -------------------------------------------------------------------------- */
 .section-stories {
   position: relative;
   padding: 15rem 0;
@@ -1300,17 +1459,38 @@ body {
   background-position: center;
   background-attachment: fixed;
 }
+@media only screen and (max-width: 56.25em) {
+  .section-stories {
+    padding: 10rem 0;
+    background-attachment: scroll;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .section-stories {
+    padding: 8rem 0;
+  }
+}
 
-/* ==========================================
-   SECTION BOOK / CONSULTATION
-   ========================================== */
+/* --------------------------------------------------------------------------
+   سکشن مشاوره و سفارش قالپاق (Book / Consultation Section)
+   -------------------------------------------------------------------------- */
 .section-book {
   padding: 15rem 0;
   background-image: linear-gradient(to right bottom, #198754, #08331f);
 }
+@media only screen and (max-width: 56.25em) {
+  .section-book {
+    padding: 10rem 0;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .section-book {
+    padding: 8rem 0;
+  }
+}
 
 .book {
-  background-image: linear-gradient(-105deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 50%), url(../img/hero.webp);
+  background-image: linear-gradient(-105deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 50%), url("../img/hero.webp");
   background-size: cover;
   background-position: center;
   border-radius: 3px;
@@ -1318,12 +1498,12 @@ body {
 }
 @media only screen and (max-width: 75em) {
   .book {
-    background-image: linear-gradient(-105deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 65%, transparent 65%), url(../img/hero.webp);
+    background-image: linear-gradient(-105deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 65%, transparent 65%), url("../img/hero.webp");
   }
 }
 @media only screen and (max-width: 56.25em) {
   .book {
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.92) 100%), url(../img/hero.webp);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.92) 100%), url("../img/hero.webp");
   }
 }
 .book__form {

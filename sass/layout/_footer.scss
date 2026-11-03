@@ -1,94 +1,38 @@
-// .footer {
-//   background-color: $color-grey-dark-3;
-//   padding: 10rem 0;
-//   font-size: 1.4rem;
-//   color: $color-grey-light-1;
+/* ==========================================================================
+   پاورقی سایت شهر قالپاق (Footer Layout)
+   طراحی واکنش‌گرا، راست‌چین و متناسب‌سازی فاصله‌ها در موبایل و تبلت
+   ========================================================================== */
 
-//   &__logo-box {
-//     text-align: center;
-//     margin-bottom: 8rem;
-//   }
-
-//   &__logo {
-//     width: 15rem;
-//     height: auto;
-//     border-radius: 50%; // گرد کردن برای نشستن نرم روی پس‌زمینه تیره
-//     transition: all 0.3s ease;
-//     box-shadow: 0 1rem 3rem rgba($color-black, 0.4);
-
-//     &:hover {
-//       transform: scale(1.08);
-//       box-shadow: 0 1.5rem 4rem rgba($color-black, 0.6);
-//     }
-//   }
-
-//   &__navigation {
-//     border-top: 1px solid $color-grey-dark-1;
-//     padding-top: 2rem;
-//     display: inline-block;
-//     width: 100%;
-//   }
-
-//   &__list {
-//     list-style: none;
-//     display: flex;
-//     justify-content: flex-end; // هماهنگ با سمت راست
-//     gap: 3rem;
-//     flex-wrap: wrap;
-//   }
-
-//   &__item {
-//     display: inline-block;
-//   }
-
-//   &__link {
-//     &:link,
-//     &:visited {
-//       color: $color-grey-light-1;
-//       background-color: $color-grey-dark-3;
-//       text-decoration: none;
-//       text-transform: uppercase;
-//       display: inline-block;
-//       transition: all 0.3s;
-//     }
-
-//     &:hover,
-//     &:active {
-//       color: $color-gold;
-//       box-shadow: 0 1rem 2rem rgba($color-black, 0.4);
-//       transform: rotate(-4deg) scale(1.2);
-//     }
-//   }
-
-//   &__copyright {
-//     border-top: 1px solid $color-grey-dark-1;
-//     padding-top: 2rem;
-//     width: 100%;
-//     float: right;
-//     text-align: right;
-//     line-height: 1.8;
-//     color: $color-grey-light-2;
-
-//     a {
-//       color: $color-gold;
-//       text-decoration: none;
-//       transition: color 0.2s;
-
-//       &:hover {
-//         color: $color-gold-light;
-//       }
-//     }
-//   }
-// }
 .footer {
   background-color: $color-grey-dark-3;
   padding: 10rem 0;
   font-size: 1.4rem;
   color: $color-grey-light-1;
 
+  // جمع‌وجور کردن ارتفاع خالی فوتر در تبلت عمودی و موبایل
+  @include respond(tab-port) {
+    padding: 8rem 0;
+  }
+
+  @include respond(phone) {
+    padding: 6rem 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     بخش لوگوی فوتر
+     -------------------------------------------------------------------------- */
   &__logo-box {
     text-align: center;
     margin-bottom: 8rem;
+
+    // کاهش فاصله بزرگ زیر لوگو در موبایل و تبلت
+    @include respond(tab-port) {
+      margin-bottom: 5rem;
+    }
+
+    @include respond(phone) {
+      margin-bottom: 4rem;
+    }
   }
 
   &__logo {
@@ -98,12 +42,19 @@
     transition: all 0.3s ease;
     box-shadow: 0 1rem 3rem rgba($color-black, 0.4);
 
+    @include respond(phone) {
+      width: 12rem; // اندازه متناسب‌تر لوگو در نمایشگرهای کوچک
+    }
+
     &:hover {
       transform: scale(1.08);
       box-shadow: 0 1.5rem 4rem rgba($color-black, 0.6);
     }
   }
 
+  /* --------------------------------------------------------------------------
+     عناوین ستون‌های فوتر
+     -------------------------------------------------------------------------- */
   &__heading {
     font-size: 1.6rem;
     text-transform: uppercase;
@@ -115,11 +66,20 @@
     display: inline-block;
   }
 
+  /* --------------------------------------------------------------------------
+     بخش‌های ناوبری، تماس و درباره ما
+     -------------------------------------------------------------------------- */
   &__navigation,
   &__contact,
   &__about {
     border-top: 1px solid $color-grey-dark-1;
     padding-top: 2rem;
+
+    // در حالت موبایل محتوا می‌تواند در مرکز قرار بگیرد تا متقارن دیده شود
+    @include respond(phone) {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
   }
 
   &__list {
@@ -138,18 +98,23 @@
     &:link,
     &:visited {
       color: $color-grey-light-1;
+      background-color: $color-grey-dark-3; // حتماً باید باشه تا سایه زیر متن قشنگ بنشیند
       text-decoration: none;
-      display: inline-block;
-      transition: all 0.3s;
+      display: inline-block; // ضروری برای اینکه transform روی لینک کار کند
+      transition: all 0.2s ease;
     }
 
     &:hover,
     &:active {
       color: $color-gold;
-      transform: translateX(-5px); // افکت حرکت ملایم به سمت راست/چپ در هاور منو
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.4);
+      transform: rotate(-5deg) scale(1.25); // چرخش کج و بزرگ‌نمایی دلپذیر
     }
   }
 
+  /* --------------------------------------------------------------------------
+     متن‌های توضیحات و اطلاعات تماس
+     -------------------------------------------------------------------------- */
   &__text {
     line-height: 1.8;
     margin-bottom: 1rem;
@@ -161,10 +126,17 @@
     }
   }
 
+  /* --------------------------------------------------------------------------
+     حق نشر و کپی‌رایت
+     -------------------------------------------------------------------------- */
   &__copyright {
     line-height: 1.8;
     color: $color-grey-light-2;
     text-align: right;
+
+    @include respond(phone) {
+      text-align: center; // بالانس و تقارن متن کپی‌رایت در موبایل
+    }
 
     a {
       color: $color-gold;

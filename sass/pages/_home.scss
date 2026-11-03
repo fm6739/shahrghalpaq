@@ -1,29 +1,79 @@
+/* ==========================================================================
+   صفحه اصلی سایت شهر قالپاق (Home Page Sections)
+   طراحی واکنش‌گرا، راست‌چین و بهینه‌سازی شده برای موبایل و تبلت
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   سکشن درباره ما / معرفی قالپاق خودروها
+   -------------------------------------------------------------------------- */
 .section-about {
-  background-color: #f7f7f7;
+  background-color: $color-grey-light-1;
   padding: 25rem 0;
   margin-top: -20vh;
+
+  // تنظیم ارتفاع در تبلت عمودی و موبایل
+  @include respond(tab-port) {
+    padding: 18rem 0 10rem 0;
+    margin-top: -15vh;
+  }
+
+  @include respond(phone) {
+    padding: 15rem 0 8rem 0;
+  }
 }
 
+/* --------------------------------------------------------------------------
+   سکشن ویژگی‌ها و مزایا (با فرم زاویه‌دار و شیب‌دار)
+   -------------------------------------------------------------------------- */
 .section-features {
   padding: 20rem 0 15rem 0;
   margin-top: -10rem;
   background-color: $color-primary;
   transform: skewY(-7deg);
 
+  // برگرداندن محتوای داخلی به حالت صاف
   & > * {
     transform: skewY(7deg);
   }
+
+  // در تبلت عمودی و موبایل، ارتفاع بخش جمع‌وجورتر می‌شود
+  @include respond(tab-port) {
+    padding: 10rem 0;
+    margin-top: -8rem;
+  }
+
+  @include respond(phone) {
+    padding: 8rem 0;
+  }
 }
+
+/* --------------------------------------------------------------------------
+   سکشن دسته‌بندی و خرید قالپاق‌ها (Tours / Products)
+   -------------------------------------------------------------------------- */
 .section-tours {
   background-color: $color-grey-light-1;
   padding: 25rem 0 15rem 0;
   margin-top: -10rem;
+
+  // کاهش فاصله‌های خالی عمودی برای جلوگیری از اسکرول خسته‌کننده در گوشی
+  @include respond(tab-port) {
+    padding: 15rem 0 10rem 0;
+    margin-top: -8rem;
+  }
+
+  @include respond(phone) {
+    padding: 12rem 0 8rem 0;
+  }
 }
+
+/* --------------------------------------------------------------------------
+   سکشن نظرات و تجربیات مشتریان (Stories)
+   -------------------------------------------------------------------------- */
 .section-stories {
   position: relative;
   padding: 15rem 0;
 
-  // استفاده از رنگ سفید بسیار شفاف برای روشن کردن فضا
+  // پس‌زمینه با لایه روشن شفاف برای افزایش چشم‌نواز خوانایی متون
   background-image:
     linear-gradient(
       to right bottom,
@@ -34,11 +84,21 @@
 
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; // این باعث میشه موقع اسکرول، عکس ثابت بمونه که خیلی شیکه
+  background-attachment: fixed; // افکت پارالاکس و ثبات عکس در دسکتاپ
+
+  @include respond(tab-port) {
+    padding: 10rem 0;
+    background-attachment: scroll; // غیرفعال کردن fixed در موبایل به دلیل افت کارایی در مرورگر گوشی
+  }
+
+  @include respond(phone) {
+    padding: 8rem 0;
+  }
 }
-/* ==========================================
-   SECTION BOOK / CONSULTATION
-   ========================================== */
+
+/* --------------------------------------------------------------------------
+   سکشن مشاوره و سفارش قالپاق (Book / Consultation Section)
+   -------------------------------------------------------------------------- */
 .section-book {
   padding: 15rem 0;
   background-image: linear-gradient(
@@ -46,6 +106,14 @@
     $color-primary-light,
     $color-primary-dark
   );
+
+  @include respond(tab-port) {
+    padding: 10rem 0;
+  }
+
+  @include respond(phone) {
+    padding: 8rem 0;
+  }
 }
 
 .book {
@@ -56,7 +124,7 @@
       rgba($color-white, 0.9) 50%,
       transparent 50%
     ),
-    url(../img/hero.webp);
+    url("../img/hero.webp");
   background-size: cover;
   background-position: center;
   border-radius: 3px;
@@ -71,7 +139,7 @@
         rgba($color-white, 0.9) 65%,
         transparent 65%
       ),
-      url(../img/hero.webp);
+      url("../img/hero.webp");
   }
 
   // در تبلت عمودی و موبایل، کل کادر سفید شفاف می‌شود تا متن کاملاً خوانا بماند
@@ -82,9 +150,10 @@
         rgba($color-white, 0.92) 0%,
         rgba($color-white, 0.92) 100%
       ),
-      url(../img/hero.webp);
+      url("../img/hero.webp");
   }
 
+  // بخش درونی فرم سفارش
   &__form {
     width: 50%;
     padding: 6rem;
