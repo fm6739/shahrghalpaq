@@ -1,52 +1,65 @@
+/* ==========================================================================
+   Typography Styles - سبک‌های تایپوگرافی سایت شهر قالپاق
+   طراحی‌شده با متدولوژی BEM و معماری Sass 7-1
+   کاملاً بهینه‌سازی‌شده برای رسم‌الخط و فونت فارسی (وزیرمتن)
+   ========================================================================== */
+
+// ۱. استایل کلی متن بدنه سایت
 body {
   font-family: "Vazirmatn", sans-serif;
   font-weight: 400;
-  // font-size: 16px;
+  // font-size: 16px; // اندازه پایه از فایل base و html به ارث می‌رسد
   line-height: 1.7;
   color: $color-grey-dark;
 }
 
+// ۲. تیتر اصلی صفحه اول (Header / Hero Section)
 .heading-primary {
   color: $color-white;
-  text-transform: uppercase;
+  // text-transform: uppercase; // در زبان فارسی کاربردی ندارد
   backface-visibility: hidden;
   margin-bottom: 6rem;
 
+  // عنوان بزرگ اصلی (مثل: شهر قالپاق)
   &--main {
     display: block;
-    font-size: 6rem;
+    font-size: 6.2rem;
     font-weight: 400;
-    letter-spacing: 1.5rem;
+    // letter-spacing: 1.5rem; // در فونت فارسی باعث جدا شدن حروف می‌شود
 
     animation-name: moveInLeft;
     animation-duration: 1s;
     animation-timing-function: ease-out;
 
     @include respond(tab-port) {
-      font-size: 5rem;
-      letter-spacing: 1rem;
+      font-size: 5.2rem;
     }
 
     @include respond(phone) {
-      font-size: 4rem;
-      letter-spacing: 0.5rem;
+      font-size: 3.8rem;
     }
   }
 
+  // زیرتیتر توضیحی زیر عنوان اصلی
   &--sub {
     display: block;
     font-size: 2rem;
     font-weight: 700;
-    letter-spacing: 0.75rem;
+    // letter-spacing: 1.75rem; // در زبان فارسی کامنت شد
 
     animation: moveInRight 1s ease-out;
 
+    @include respond(tab-port) {
+      font-size: 1.8rem;
+    }
+
     @include respond(phone) {
-      letter-spacing: 0.4rem;
+      font-size: 1.7rem;
     }
   }
 }
 
+// ۳. تیترهای ثانویه بخش‌ها با افکت گرادینت طلایی (مثل: درباره ما، دسته‌بندی‌های محبوب)
 .heading-secondary {
   font-size: 3.5rem;
   font-weight: 700;
@@ -59,7 +72,7 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: 0.1rem;
+  // letter-spacing: 0.1rem; // در فونت فارسی برداشته شد تا اتصال حروف به هم نخورد
   transition: all 0.2s;
 
   @include respond(tab-port) {
@@ -68,7 +81,6 @@ body {
 
   @include respond(phone) {
     font-size: 2.5rem;
-    letter-spacing: 0;
   }
 
   &:hover {
@@ -77,15 +89,33 @@ body {
   }
 }
 
+// ۴. تیترهای سطح ۳ (مناسب برای بالای کارت‌های چرخان، ویژگی‌ها و بلاک‌های توضیحی)
 .heading-tertiary {
-  font-size: $default-font-size;
+  font-size: 1.8rem;
   font-weight: 700;
+  // text-transform: uppercase; // در فونت فارسی نیازی نیست
+
+  // در تبلت و موبایل روی 1.7rem تنظیم شد تا هم در کارت‌ها جمع‌وجور باشد و هم از متن پاراگراف بزرگ‌تر بماند
+  @include respond(tab-port) {
+    font-size: 1.7rem;
+  }
 }
 
+// ۵. پاراگراف‌ها و متون توضیحی
 .paragraph {
-  font-size: $default-font-size;
+  font-size: $default-font-size; // معادل 1.6rem
 
   &:not(:last-child) {
     margin-bottom: 3rem;
+  }
+
+  // تراز متن در دسکتاپ به صورت تراز کامل (Justify)
+  text-align: justify;
+  line-height: 1.8;
+
+  // در تبلت و موبایل راست‌چین می‌شود تا بین کلمات فاصله غیرعادی و زشت نیفتد
+  @include respond(tab-port) {
+    text-align: right;
+    line-height: 1.7;
   }
 }
