@@ -1,22 +1,31 @@
+// ==========================================
+// ناوبری اصلی سایت (منوی همبرگری و پرده‌ای)
+// بر اساس متدولوژی BEM و معماری Sass 7-1
+// ==========================================
+
 .navigation {
-  // مخفی کردن چک‌باکس اصلی چون ما با لِیبل (دکمه) کار داریم
+  // ----------------------------------------
+  // ۱. چک‌باکس مخفی (موتور محرک باز و بسته شدن)
+  // ----------------------------------------
   &__checkbox {
-    display: none;
+    display: none; // مخفی است چون کنترل از طریق لیبل انجام می‌شود
   }
 
-  // دکمه‌ی دایره‌ای سفید روی صفحه
+  // ----------------------------------------
+  // ۲. دکمه دایره‌ای سفید (لیبل روی صفحه)
+  // ----------------------------------------
   &__button {
     background-color: $color-white;
     height: 7rem;
     width: 7rem;
-    position: fixed;
+    position: fixed; // سنجاق‌شده به صفحه و مستقل از اسکرول
     top: 6rem;
-    left: 6rem; // سمت چپ قرار دادیم چون سایت فارسی و راست‌چین است
-    border-radius: 50%;
-    z-index: 2000;
-    box-shadow: 0 1rem 3rem rgba($color-black, 0.15);
+    left: 6rem;
+    border-radius: 50%; // تبدیل به دایره کامل
+    z-index: 2000; // بالاترین لایه برای همیشه در دسترس بودن
+    box-shadow: 0 1rem 3rem rgba($color-black, 0.15); // سایه شناور و نرم
     text-align: center;
-    cursor: pointer;
+    cursor: pointer; // نمایش نشانگر دست
 
     @include respond(tab-port) {
       top: 4rem;
@@ -24,25 +33,27 @@
     }
 
     @include respond(phone) {
-      top: 3rem;
-      left: 3rem;
+      top: 3.6rem;
+      left: 3.6rem;
     }
   }
 
-  // دایره‌ی پس‌زمینه سبز که قراره موقع کلیک بزرگ بشه و کل صفحه رو بگیره
+  // ----------------------------------------
+  // ۳. دایره پس‌زمینه سبز (پرده بازشونده)
+  // ----------------------------------------
   &__background {
     height: 6rem;
     width: 6rem;
     border-radius: 50%;
     position: fixed;
     top: 6.5rem;
-    left: 6.5rem;
+    left: 6.5rem; // دقیقاً در مرکز و پشت دکمه سفید
     background-image: radial-gradient(
       $color-primary-light,
       $color-primary-dark
     );
-    z-index: 1000;
-    transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+    z-index: 1000; // یک پله پایین‌تر از دکمه سفید
+    transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1); // باز شدن باشکوه و نرم
 
     @include respond(tab-port) {
       top: 4.5rem;
@@ -50,51 +61,70 @@
     }
 
     @include respond(phone) {
-      top: 3.5rem;
-      left: 3.5rem;
+      top: 4.1rem;
+      left: 4.1rem;
     }
   }
 
-  // کادر تمام‌صفحه‌ای که منو داخلش قرار می‌گیره
+  // ----------------------------------------
+  // ۴. کادر نگه‌دارنده کل منو
+  // ----------------------------------------
   &__nav {
     height: 100vh;
     position: fixed;
     top: 0;
-    left: 0;
-    z-index: 1500;
-
-    // در حالت عادی کادر صفر و مخفی است
-    opacity: 0;
+    right: 0;
+    z-index: 1500; // میان پس‌زمینه سبز (1000) و دکمه سفید (2000)
     width: 0;
+    opacity: 0;
+    background-color: transparent; // کاملاً شیشه‌ای
+
+    // حالت فنری ارتجاعی شبیه به پروژه Natours
     transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
-  // لیست آیتم‌ها در وسط صفحه
+  // ----------------------------------------
+  // ۵. لیست لینک‌ها در مرکز صفحه
+  // ----------------------------------------
   &__list {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     list-style: none;
-    text-align: center;
-    width: 100%;
+    text-align: right;
+    width: max-content;
+    max-width: 90vw; // جلوگیری از سرریز در نمایشگرهای باریک موبایل
+
+    // مخفی‌سازی تا رفع کامل پرش فریم‌های اول
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease;
   }
 
   &__item {
     margin: 1rem;
   }
 
-  // لینک‌های شیک با افکت هایلایت
+  // ----------------------------------------
+  // ۶. لینک‌های منو با انیمیشن هایلایت مورب
+  // ----------------------------------------
   &__link {
     &:link,
     &:visited {
       display: inline-block;
-      font-size: 3.5rem; // در دسکتاپ بزرگ، باشکوه و لوکس
+      font-size: 3.5rem;
       font-weight: 300;
       padding: 1rem 2rem;
       color: $color-white;
       text-decoration: none;
       text-transform: uppercase;
+      width: 100%;
+      text-align: right;
+
+      // گرادیانت دورنگ جهت افکت هایلایت پس‌زمینه
       background-image: linear-gradient(
         120deg,
         transparent 0%,
@@ -114,9 +144,12 @@
         padding: 0.6rem 1.2rem;
       }
 
+      // شماره‌گذاری اول هر لینک (ستون منظم و راست‌چین)
       span {
         margin-left: 1.5rem;
         display: inline-block;
+        width: 4rem;
+        text-align: center;
         font-family: inherit;
         font-weight: 700;
         color: $color-gold-light;
@@ -127,24 +160,42 @@
     &:active {
       background-position: 100%;
       color: $color-primary;
-      transform: translateX(-1rem); // حرکت نرم به چپ در حالت هاور
+      transform: translateX(-1rem); // حرکت نرم و لوکس به سمت چپ
     }
   }
 
-  // عملکرد باز شدن منو وقتی چک‌باکس انتخاب می‌شود
+  // ----------------------------------------
+  // ۷. عملکرد فعال‌سازی منو (Checkbox Hack)
+  // ----------------------------------------
+
+  // الف) گسترش پرده سبز به اندازه ۸۰ برابر
   &__checkbox:checked ~ &__background {
     transform: scale(80);
   }
 
+  // ب) گسترش کادر ناوبری به کل پهنای صفحه
   &__checkbox:checked ~ &__nav {
     opacity: 1;
     width: 100%;
   }
 
-  // آیکون همبرگری
+  // ج) ظاهر شدن متن‌ها با تاخیر هوشمندانه جهت حذف پرش گوشه صفحه
+  &__checkbox:checked ~ &__nav &__list {
+    opacity: 1;
+    visibility: visible;
+    transition:
+      opacity 0.4s ease 0.35s,
+      visibility 0.4s ease 0.35s;
+  }
+
+  // ----------------------------------------
+  // ۸. آیکون سه خط همبرگری و انیمیشن تبدیل به ضربدر
+  // ----------------------------------------
+
+  // خط وسط همبرگر
   &__icon {
     position: relative;
-    margin-top: 3.5rem;
+    margin-top: 3.5rem; // مرکز عمودی دکمه دایره‌ای
 
     &,
     &::before,
@@ -164,33 +215,35 @@
     }
 
     &::before {
-      top: -0.8rem;
+      top: -0.8rem; // خط بالایی
     }
+
     &::after {
-      top: 0.8rem;
+      top: 0.8rem; // خط پایینی
     }
   }
 
-  // هاور کردن روی دکمه (خطوط کمی فاصله می‌گیرند)
+  // انیمیشن هاور روی دکمه (فاصله‌گرفتن خطوط بالا و پایین)
   &__button:hover &__icon::before {
     top: -1rem;
   }
+
   &__button:hover &__icon::after {
     top: 1rem;
   }
 
-  // تبدیل همبرگری به ضربدر هنگام تیک خوردن
+  // تبدیل خطوط به ضربدر هنگام باز شدن منو
   &__checkbox:checked + &__button &__icon {
-    background-color: transparent;
+    background-color: transparent; // حذف خط وسط
   }
 
   &__checkbox:checked + &__button &__icon::before {
     top: 0;
-    transform: rotate(135deg);
+    transform: rotate(135deg); // چرخش خط بالا
   }
 
   &__checkbox:checked + &__button &__icon::after {
     top: 0;
-    transform: rotate(-135deg);
+    transform: rotate(-135deg); // چرخش خط پایین و تشکیل ضربدر متقارن
   }
 }
