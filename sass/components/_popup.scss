@@ -72,6 +72,7 @@
       width: 100%;
       display: block;
       padding: 3rem 3rem 4rem 3rem;
+      text-align: center;
     }
   }
 
@@ -145,11 +146,20 @@
       display: inline-block;
       transition: all 0.2s;
       line-height: 1;
-      z-index: 1000; // تضمین قرارگیری دکمه روی تمام لایه‌ها
+      z-index: 1000;
+
+      // پدینگ ثابت تا باکس همیشه جای خودش رو داشته باشه و نپره
+      padding: 0.5rem 1rem;
+      border-radius: 50%;
+      background-color: transparent;
     }
 
     &:hover {
       color: $color-primary;
+      // رنگ پس‌زمینه رو کمی تیره‌تر کردیم تا روی سفید قشنگ دیده بشه
+      background-color: rgba($color-grey-dark, 0.2);
+      // به جای تغییر پدینگ، از بزرگ‌نمایی استفاده می‌کنیم که حرکت نکنه
+      transform: scale(1.1);
     }
   }
 
