@@ -5,7 +5,7 @@
 
 .footer {
   background-color: $color-grey-dark-3;
-  padding: 10rem 0;
+  padding: 10rem 5rem;
   font-size: 1.4rem;
   color: $color-grey-light-1;
 
@@ -75,8 +75,9 @@
     border-top: 1px solid $color-grey-dark-1;
     padding-top: 2rem;
 
-    // در حالت موبایل محتوا می‌تواند در مرکز قرار بگیرد تا متقارن دیده شود
-    @include respond(phone) {
+    // در تبلت و موبایل، ستون‌های فوتر زیر هم قرار می‌گیرند؛
+    // پس محتوا را وسط‌چین می‌کنیم تا چیدمان متقارن بماند.
+    @include respond(tab-port) {
       text-align: center;
       margin-bottom: 3rem;
     }
@@ -134,8 +135,11 @@
     color: $color-grey-light-2;
     text-align: right;
 
-    @include respond(phone) {
-      text-align: center; // بالانس و تقارن متن کپی‌رایت در موبایل
+    // در تبلت و موبایل، ستون‌های فوتر زیر هم قرار می‌گیرند؛
+    // پس محتوا را وسط‌چین می‌کنیم تا چیدمان متقارن بماند.
+    @include respond(tab-port) {
+      text-align: center;
+      margin-bottom: 3rem;
     }
 
     a {
@@ -145,6 +149,63 @@
 
       &:hover {
         color: $color-gold-light;
+      }
+    }
+  }
+  /* --------------------------------------------------------------------------
+     شبکه‌های اجتماعی فوتر
+     -------------------------------------------------------------------------- */
+  &__social {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+    @include respond(tab-port) {
+      justify-content: center; // وسط‌چین شدن آیکون‌ها در تبلت و موبایل
+    }
+  }
+
+  &__social-link {
+    &:link,
+    &:visited {
+      color: $color-grey-light-2;
+      background-color: $color-grey-dark-2;
+      padding: 0.6rem 1.2rem;
+      font-size: 1.3rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+      svg {
+        width: 1.8rem;
+        height: 1.8rem;
+        fill: $color-gold;
+        transition: all 0.3s ease;
+      }
+
+      &:hover svg {
+        fill: $color-white;
+      }
+    }
+
+    i {
+      font-size: 1.5rem;
+      color: $color-gold;
+    }
+
+    &:hover,
+    &:active {
+      color: $color-white;
+      background-color: $color-gold;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.4);
+
+      i {
+        color: $color-white;
       }
     }
   }

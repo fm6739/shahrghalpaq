@@ -1140,7 +1140,7 @@ body {
    ========================================================================== */
 .footer {
   background-color: #333;
-  padding: 10rem 0;
+  padding: 10rem 5rem;
   font-size: 1.4rem;
   color: #f7f7f7;
   /* --------------------------------------------------------------------------
@@ -1157,6 +1157,9 @@ body {
      -------------------------------------------------------------------------- */
   /* --------------------------------------------------------------------------
      حق نشر و کپی‌رایت
+     -------------------------------------------------------------------------- */
+  /* --------------------------------------------------------------------------
+     شبکه‌های اجتماعی فوتر
      -------------------------------------------------------------------------- */
 }
 @media only screen and (max-width: 56.25em) {
@@ -1213,7 +1216,7 @@ body {
   border-top: 1px solid #666;
   padding-top: 2rem;
 }
-@media only screen and (max-width: 37.5em) {
+@media only screen and (max-width: 56.25em) {
   .footer__navigation, .footer__contact, .footer__about {
     text-align: center;
     margin-bottom: 3rem;
@@ -1254,9 +1257,10 @@ body {
   color: #eee;
   text-align: right;
 }
-@media only screen and (max-width: 37.5em) {
+@media only screen and (max-width: 56.25em) {
   .footer__copyright {
     text-align: center;
+    margin-bottom: 3rem;
   }
 }
 .footer__copyright a {
@@ -1266,6 +1270,52 @@ body {
 }
 .footer__copyright a:hover {
   color: #dfc168;
+}
+.footer__social {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+@media only screen and (max-width: 56.25em) {
+  .footer__social {
+    justify-content: center;
+  }
+}
+.footer__social-link:link, .footer__social-link:visited {
+  color: #eee;
+  background-color: #999;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.3rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+.footer__social-link:link svg, .footer__social-link:visited svg {
+  width: 1.8rem;
+  height: 1.8rem;
+  fill: #c9a441;
+  transition: all 0.3s ease;
+}
+.footer__social-link:link:hover svg, .footer__social-link:visited:hover svg {
+  fill: #fff;
+}
+.footer__social-link i {
+  font-size: 1.5rem;
+  color: #c9a441;
+}
+.footer__social-link:hover, .footer__social-link:active {
+  color: #fff;
+  background-color: #c9a441;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
+}
+.footer__social-link:hover i, .footer__social-link:active i {
+  color: #fff;
 }
 
 .navigation__checkbox {
