@@ -1,6 +1,6 @@
 /* ==========================================================================
    پاورقی سایت شهر قالپاق (Footer Layout)
-   طراحی واکنش‌گرا، راست‌چین و متناسب‌سازی فاصله‌ها در موبایل و تبلت
+   ساختار: لوگو ← سه ستون اطلاعاتی ← ردیف مستقل نقشه و شبکه‌های اجتماعی
    ========================================================================== */
 
 .footer {
@@ -9,7 +9,6 @@
   font-size: 1.4rem;
   color: $color-grey-light-1;
 
-  // جمع‌وجور کردن ارتفاع خالی فوتر در تبلت عمودی و موبایل
   @include respond(tab-port) {
     padding: 8rem 0;
   }
@@ -18,14 +17,13 @@
     padding: 6rem 0;
   }
 
-  /* --------------------------------------------------------------------------
-     بخش لوگوی فوتر
-     -------------------------------------------------------------------------- */
+  /* ------------------------------------------------------------------------
+     لوگوی فوتر
+     ------------------------------------------------------------------------ */
   &__logo-box {
     text-align: center;
     margin-bottom: 8rem;
 
-    // کاهش فاصله بزرگ زیر لوگو در موبایل و تبلت
     @include respond(tab-port) {
       margin-bottom: 5rem;
     }
@@ -43,7 +41,7 @@
     box-shadow: 0 1rem 3rem rgba($color-black, 0.4);
 
     @include respond(phone) {
-      width: 12rem; // اندازه متناسب‌تر لوگو در نمایشگرهای کوچک
+      width: 12rem;
     }
 
     &:hover {
@@ -52,9 +50,9 @@
     }
   }
 
-  /* --------------------------------------------------------------------------
-     عناوین ستون‌های فوتر
-     -------------------------------------------------------------------------- */
+  /* ------------------------------------------------------------------------
+     عنوان و محتوای سه ستون بالایی
+     ------------------------------------------------------------------------ */
   &__heading {
     font-size: 1.6rem;
     text-transform: uppercase;
@@ -66,17 +64,12 @@
     display: inline-block;
   }
 
-  /* --------------------------------------------------------------------------
-     بخش‌های ناوبری، تماس و درباره ما
-     -------------------------------------------------------------------------- */
   &__navigation,
   &__contact,
   &__about {
     border-top: 1px solid $color-grey-dark-1;
     padding-top: 2rem;
 
-    // در تبلت و موبایل، ستون‌های فوتر زیر هم قرار می‌گیرند؛
-    // پس محتوا را وسط‌چین می‌کنیم تا چیدمان متقارن بماند.
     @include respond(tab-port) {
       text-align: center;
       margin-bottom: 3rem;
@@ -89,19 +82,15 @@
 
   &__item {
     margin-bottom: 1rem;
-
-    &:not(:last-child) {
-      margin-bottom: 1rem;
-    }
   }
 
   &__link {
     &:link,
     &:visited {
       color: $color-grey-light-1;
-      background-color: $color-grey-dark-3; // حتماً باید باشه تا سایه زیر متن قشنگ بنشیند
+      background-color: $color-grey-dark-3;
       text-decoration: none;
-      display: inline-block; // ضروری برای اینکه transform روی لینک کار کند
+      display: inline-block;
       transition: all 0.2s ease;
     }
 
@@ -109,13 +98,10 @@
     &:active {
       color: $color-gold;
       box-shadow: 0 1rem 2rem rgba($color-black, 0.4);
-      transform: rotate(-5deg) scale(1.25); // چرخش کج و بزرگ‌نمایی دلپذیر
+      transform: rotate(-5deg) scale(1.25);
     }
   }
 
-  /* --------------------------------------------------------------------------
-     متن‌های توضیحات و اطلاعات تماس
-     -------------------------------------------------------------------------- */
   &__text {
     line-height: 1.8;
     margin-bottom: 1rem;
@@ -127,16 +113,11 @@
     }
   }
 
-  /* --------------------------------------------------------------------------
-     حق نشر و کپی‌رایت
-     -------------------------------------------------------------------------- */
   &__copyright {
     line-height: 1.8;
     color: $color-grey-light-2;
     text-align: right;
 
-    // در تبلت و موبایل، ستون‌های فوتر زیر هم قرار می‌گیرند؛
-    // پس محتوا را وسط‌چین می‌کنیم تا چیدمان متقارن بماند.
     @include respond(tab-port) {
       text-align: center;
       margin-bottom: 3rem;
@@ -152,49 +133,162 @@
       }
     }
   }
-  /* --------------------------------------------------------------------------
-     شبکه‌های اجتماعی فوتر
-     -------------------------------------------------------------------------- */
-  &__social {
-    margin-top: 2rem;
+
+  /* ------------------------------------------------------------------------
+     ردیف تعاملی مستقل، زیر سه ستون
+     عرض این ردیف دیگر به ستون «ارتباط با شهر قالپاق» محدود نیست.
+     ------------------------------------------------------------------------ */
+  &__interactive-row {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 114rem;
+    margin: 4rem auto 0;
+    padding-top: 4rem;
+    border-top: 1px solid $color-grey-dark-1;
+
     display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
 
     @include respond(tab-port) {
-      justify-content: center; // وسط‌چین شدن آیکون‌ها در تبلت و موبایل
+      padding-right: 3rem;
+      padding-left: 3rem;
     }
+
+    @include respond(phone) {
+      margin-top: 2rem;
+      padding-right: 2rem;
+      padding-left: 2rem;
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     نقشه؛ عرض کامل ردیف تعاملی
+     ------------------------------------------------------------------------ */
+  &__map-box {
+    width: 100%;
+  }
+
+  &__map-wrapper {
+    position: relative;
+    width: 100%;
+    height: 25rem;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba($color-primary, 0.4);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.3);
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: $color-primary;
+      box-shadow: 0 1.5rem 3rem rgba($color-black, 0.4);
+      transform: translateY(-2px);
+    }
+
+    @include respond(tab-port) {
+      height: 22rem;
+    }
+
+    @include respond(phone) {
+      height: 20rem;
+    }
+  }
+
+  &__map-iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: brightness(0.9) contrast(1.05);
+  }
+
+  /* ------------------------------------------------------------------------
+     دکمه‌های مسیریابی؛ زیر نقشه و وسط‌چین
+     ------------------------------------------------------------------------ */
+  &__routing-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  &__routing-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 1rem 2rem;
+    min-width: 15rem;
+    font-size: 1.3rem;
+    font-family: inherit;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+
+    &--neshan {
+      background-color: #2b78e4;
+      color: $color-white;
+
+      &:hover {
+        background-color: darken(#2b78e4, 10%);
+        transform: translateY(-2px);
+        box-shadow: 0 0.8rem 1.5rem rgba(#2b78e4, 0.3);
+      }
+    }
+
+    &--balad {
+      background-color: #00a693;
+      color: $color-white;
+
+      &:hover {
+        background-color: darken(#00a693, 10%);
+        transform: translateY(-2px);
+        box-shadow: 0 0.8rem 1.5rem rgba(#00a693, 0.3);
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &__routing-icon {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  /* ------------------------------------------------------------------------
+     شبکه‌های اجتماعی؛ ردیف مستقل زیر دکمه‌های مسیریابی
+     نام کلاس با HTML فعلی هماهنگ است: footer__socials
+     ------------------------------------------------------------------------ */
+  &__socials {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 100%;
   }
 
   &__social-link {
     &:link,
     &:visited {
-      color: $color-grey-light-2;
-      background-color: $color-grey-dark-2;
-      padding: 0.6rem 1.2rem;
-      font-size: 1.3rem;
-      border-radius: 0.5rem;
-      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 0.8rem;
-      transition: all 0.3s ease;
+      padding: 0.6rem 1.2rem;
+      min-width: 10rem;
+      color: $color-grey-light-2;
+      background-color: $color-grey-dark-2;
+      font-size: 1.3rem;
+      text-decoration: none;
+      border-radius: 0.5rem;
       box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
-      svg {
-        width: 1.8rem;
-        height: 1.8rem;
-        fill: $color-gold;
-        transition: all 0.3s ease;
-      }
-
-      &:hover svg {
-        fill: $color-white;
-      }
-    }
-
-    i {
-      font-size: 1.5rem;
-      color: $color-gold;
+      transition: all 0.3s ease;
     }
 
     &:hover,
@@ -204,9 +298,20 @@
       transform: translateY(-3px) scale(1.05);
       box-shadow: 0 1rem 2rem rgba($color-black, 0.4);
 
-      i {
+      .footer__social-icon {
         color: $color-white;
       }
     }
+  }
+
+  &__social-icon {
+    width: 1.8rem;
+    height: 1.8rem;
+    flex-shrink: 0;
+    color: $color-gold;
+    transition: color 0.3s ease;
+
+    // SVGها در HTML از currentColor استفاده می‌کنند؛
+    // fill آیکون اینستاگرام را تغییر نمی‌دهیم تا خطی باقی بماند.
   }
 }

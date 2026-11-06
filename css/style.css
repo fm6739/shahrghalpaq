@@ -1136,31 +1136,33 @@ body {
 
 /* ==========================================================================
    پاورقی سایت شهر قالپاق (Footer Layout)
-   طراحی واکنش‌گرا، راست‌چین و متناسب‌سازی فاصله‌ها در موبایل و تبلت
+   ساختار: لوگو ← سه ستون اطلاعاتی ← ردیف مستقل نقشه و شبکه‌های اجتماعی
    ========================================================================== */
 .footer {
   background-color: #333;
   padding: 10rem 5rem;
   font-size: 1.4rem;
   color: #f7f7f7;
-  /* --------------------------------------------------------------------------
-     بخش لوگوی فوتر
-     -------------------------------------------------------------------------- */
-  /* --------------------------------------------------------------------------
-     عناوین ستون‌های فوتر
-     -------------------------------------------------------------------------- */
-  /* --------------------------------------------------------------------------
-     بخش‌های ناوبری، تماس و درباره ما
-     -------------------------------------------------------------------------- */
-  /* --------------------------------------------------------------------------
-     متن‌های توضیحات و اطلاعات تماس
-     -------------------------------------------------------------------------- */
-  /* --------------------------------------------------------------------------
-     حق نشر و کپی‌رایت
-     -------------------------------------------------------------------------- */
-  /* --------------------------------------------------------------------------
-     شبکه‌های اجتماعی فوتر
-     -------------------------------------------------------------------------- */
+  /* ------------------------------------------------------------------------
+     لوگوی فوتر
+     ------------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------------
+     عنوان و محتوای سه ستون بالایی
+     ------------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------------
+     ردیف تعاملی مستقل، زیر سه ستون
+     عرض این ردیف دیگر به ستون «ارتباط با شهر قالپاق» محدود نیست.
+     ------------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------------
+     نقشه؛ عرض کامل ردیف تعاملی
+     ------------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------------
+     دکمه‌های مسیریابی؛ زیر نقشه و وسط‌چین
+     ------------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------------
+     شبکه‌های اجتماعی؛ ردیف مستقل زیر دکمه‌های مسیریابی
+     نام کلاس با HTML فعلی هماهنگ است: footer__socials
+     ------------------------------------------------------------------------ */
 }
 @media only screen and (max-width: 56.25em) {
   .footer {
@@ -1228,9 +1230,6 @@ body {
 .footer__item {
   margin-bottom: 1rem;
 }
-.footer__item:not(:last-child) {
-  margin-bottom: 1rem;
-}
 .footer__link:link, .footer__link:visited {
   color: #f7f7f7;
   background-color: #333;
@@ -1271,42 +1270,134 @@ body {
 .footer__copyright a:hover {
   color: #dfc168;
 }
-.footer__social {
-  margin-top: 2rem;
+.footer__interactive-row {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 114rem;
+  margin: 4rem auto 0;
+  padding-top: 4rem;
+  border-top: 1px solid #666;
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
 }
 @media only screen and (max-width: 56.25em) {
-  .footer__social {
-    justify-content: center;
+  .footer__interactive-row {
+    padding-right: 3rem;
+    padding-left: 3rem;
   }
 }
-.footer__social-link:link, .footer__social-link:visited {
-  color: #eee;
-  background-color: #999;
-  padding: 0.6rem 1.2rem;
-  font-size: 1.3rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
+@media only screen and (max-width: 37.5em) {
+  .footer__interactive-row {
+    margin-top: 2rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+}
+.footer__map-box {
+  width: 100%;
+}
+.footer__map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 25rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 81, 50, 0.4);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+.footer__map-wrapper:hover {
+  border-color: #0f5132;
+  box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+@media only screen and (max-width: 56.25em) {
+  .footer__map-wrapper {
+    height: 22rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .footer__map-wrapper {
+    height: 20rem;
+  }
+}
+.footer__map-iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: brightness(0.9) contrast(1.05);
+}
+.footer__routing-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  width: 100%;
+  margin-top: 2rem;
+}
+.footer__routing-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.8rem;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem 2rem;
+  min-width: 15rem;
+  font-size: 1.3rem;
+  font-family: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 50px;
   transition: all 0.3s ease;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
-.footer__social-link:link svg, .footer__social-link:visited svg {
-  width: 1.8rem;
-  height: 1.8rem;
-  fill: #c9a441;
+.footer__routing-btn--neshan {
+  background-color: #2b78e4;
+  color: #fff;
+}
+.footer__routing-btn--neshan:hover {
+  background-color: #1960c3;
+  transform: translateY(-2px);
+  box-shadow: 0 0.8rem 1.5rem rgba(43, 120, 228, 0.3);
+}
+.footer__routing-btn--balad {
+  background-color: #00a693;
+  color: #fff;
+}
+.footer__routing-btn--balad:hover {
+  background-color: #007366;
+  transform: translateY(-2px);
+  box-shadow: 0 0.8rem 1.5rem rgba(0, 166, 147, 0.3);
+}
+.footer__routing-btn:active {
+  transform: translateY(0);
+}
+.footer__routing-icon {
+  display: block;
+  flex-shrink: 0;
+}
+.footer__socials {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  width: 100%;
+}
+.footer__social-link:link, .footer__social-link:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.6rem 1.2rem;
+  min-width: 10rem;
+  color: #eee;
+  background-color: #999;
+  font-size: 1.3rem;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
-}
-.footer__social-link:link:hover svg, .footer__social-link:visited:hover svg {
-  fill: #fff;
-}
-.footer__social-link i {
-  font-size: 1.5rem;
-  color: #c9a441;
 }
 .footer__social-link:hover, .footer__social-link:active {
   color: #fff;
@@ -1314,8 +1405,15 @@ body {
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
 }
-.footer__social-link:hover i, .footer__social-link:active i {
+.footer__social-link:hover .footer__social-icon, .footer__social-link:active .footer__social-icon {
   color: #fff;
+}
+.footer__social-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  flex-shrink: 0;
+  color: #c9a441;
+  transition: color 0.3s ease;
 }
 
 .navigation__checkbox {
