@@ -1,34 +1,47 @@
 /* ==========================================================================
    Typography Styles - سبک‌های تایپوگرافی سایت شهر قالپاق
    طراحی‌شده با متدولوژی BEM و معماری Sass 7-1
-   کاملاً بهینه‌سازی‌شده برای رسم‌الخط و فونت فارسی (وزیرمتن)
+   کاملاً بهینه‌سازی‌شده برای زبان فارسی و انگلیسی (i18n)
    ========================================================================== */
 
-// ۱. استایل کلی متن بدنه سایت
-body {
-  font-family: "Vazirmatn", sans-serif;
-  font-weight: 400;
-  line-height: 1.8;
-  color: $color-grey-dark;
-  font-feature-settings: "ss01"; // تنظیم اعداد و سمبل‌های فارسی استاندارد
-}
-
-// ۲. تیتر اصلی صفحه اول (Header / Hero Section)
+// ۱. تیتر اصلی صفحه اول (Header / Hero Section)
 .heading-primary {
   color: $color-white;
   backface-visibility: hidden;
-  margin-bottom: 6rem;
+  margin-bottom: $spacing-xl;
+
+  @include respond(tab-port) {
+    margin-bottom: $spacing-md;
+  }
+
+  &:lang(fa) {
+    line-height: $line-height-heading-fa;
+    letter-spacing: $ls-heading-fa;
+    text-transform: $transform-heading-fa;
+  }
+
+  &:lang(en) {
+    line-height: $line-height-heading-en;
+    letter-spacing: $ls-heading-en;
+    text-transform: $transform-heading-en;
+  }
 
   // عنوان بزرگ اصلی (شهر قالپاق)
   &--main {
     display: block;
     font-size: 6.2rem;
-    font-weight: 800; // ضخیم و باصلابت‌تر برای هدر
+    font-weight: $font-weight-black;
     line-height: 1.2;
+    backface-visibility: hidden;
 
-    animation-name: moveInLeft;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
+    // هماهنگی جهت انیمیشن ورودی با جهت زبان
+    &:lang(fa) {
+      animation: moveInRight 1s ease-out;
+    }
+
+    &:lang(en) {
+      animation: moveInLeft 1s ease-out;
+    }
 
     @include respond(tab-port) {
       font-size: 5.2rem;
@@ -43,27 +56,35 @@ body {
   // زیرتیتر توضیحی زیر عنوان اصلی
   &--sub {
     display: block;
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: $font-size-large;
+    font-weight: $font-weight-bold;
     line-height: 1.4;
-    margin-top: 1rem; // فاصله ظریف از تیتر اصلی
+    margin-top: $spacing-xs;
+    backface-visibility: hidden;
 
-    animation: moveInRight 1s ease-out;
+    // معکوس انیمیشن تیتر اصلی برای تعادل بصری
+    &:lang(fa) {
+      animation: moveInLeft 1s ease-out;
+    }
+
+    &:lang(en) {
+      animation: moveInRight 1s ease-out;
+    }
 
     @include respond(tab-port) {
-      font-size: 1.8rem;
+      font-size: $font-size-medium;
     }
 
     @include respond(phone) {
-      font-size: 1.6rem;
+      font-size: $font-size-default;
     }
   }
 }
 
-// ۳. تیترهای ثانویه بخش‌ها با افکت گرادینت طلایی
+// ۲. تیترهای ثانویه بخش‌ها با افکت گرادینت طلایی لوکس
 .heading-secondary {
   font-size: 3.8rem;
-  font-weight: 800;
+  font-weight: $font-weight-black;
   line-height: 1.3;
   display: inline-block;
   background-image: linear-gradient(
@@ -74,8 +95,8 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  padding-bottom: 0.5rem; // ممانعت از بریدگی فونت در لبه‌های پایین
-  transition: all 0.2s;
+  padding-bottom: $spacing-xxs; // جلوگیری از قطع شدن اعراب یا زیر حروف
+  transition: all $transition-fast;
 
   @include respond(tab-port) {
     font-size: 2.8rem;
@@ -91,29 +112,44 @@ body {
   }
 }
 
-// ۴. تیترهای سطح ۳ (کارت‌ها و بلاک‌ها)
+// ۳. تیترهای سطح ۳ (کارت‌ها، فیچرباکس‌ها و بلاک‌ها)
 .heading-tertiary {
-  font-size: 1.9rem;
-  font-weight: 700;
-  line-height: 1.4;
+  font-size: $font-size-default;
+  font-weight: $font-weight-bold;
+
+  &:lang(fa) {
+    line-height: $line-height-heading-fa;
+    letter-spacing: $ls-heading-fa;
+  }
+
+  &:lang(en) {
+    line-height: $line-height-heading-en;
+    letter-spacing: $ls-heading-en;
+  }
 
   @include respond(tab-port) {
-    font-size: 1.8rem;
+    font-size: $font-size-medium;
   }
 }
 
-// ۵. پاراگراف‌ها و متون توضیحی
+// ۴. پاراگراف‌ها و متون توضیحی
 .paragraph {
-  font-size: $default-font-size; // معادل 1.6rem
-  text-align: right; // راست‌چین شیک و تمیز بدون فاصله‌های خالی ناخواسته
-  line-height: 1.8;
+  font-size: $font-size-default;
+  text-align: start; // پشتیبانی طبیعی از هر دو جهت RTL و LTR
 
   &:not(:last-child) {
-    margin-bottom: 3rem;
+    margin-bottom: $spacing-md;
+  }
+
+  &:lang(fa) {
+    line-height: $line-height-body-fa;
+  }
+
+  &:lang(en) {
+    line-height: $line-height-body-en;
   }
 
   @include respond(tab-port) {
-    line-height: 1.7;
-    margin-bottom: 2rem;
+    margin-bottom: $spacing-sm;
   }
 }

@@ -1,12 +1,14 @@
-/* ==========================================================================
-   سیستم گرید اختصاصی بر پایه Float (طراحی واکنش‌گرا و راست‌چین)
-   ========================================================================== */
+// ==========================================================================
+// LAYOUT: GRID (سیستم گرید ریسپانسیو اختصاصی)
+// ==========================================================================
+// سیستم گرید با استفاده از Float و تکنیک Clearfix، طراحی شده بر اساس
+// متدولوژی Natours، کاملاً واکنش‌گرا و سازگار با دو زبان فارسی (RTL) و انگلیسی (LTR).
 
 .row {
   max-width: $grid-width;
   margin: 0 auto;
 
-  // فاصله عمودی بین ردیف‌های متوالی (به جز ردیف آخر)
+  // فاصله عمودی بین ردیف‌های متوالی
   &:not(:last-child) {
     margin-bottom: $gutter-vertical;
 
@@ -15,131 +17,97 @@
     }
   }
 
-  // تکنیک مشهور Clearfix برای جلوگیری از فروپاشی (Collapse) ارتفاع والد المان‌های Float
-  &::after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+  // جلوگیری از فروپاشی (Collapse)
+  @include clearfix;
 
   /* --------------------------------------------------------------------------
-     تنظیمات عمومی ستون‌ها با سلکتور ویژگی (Attribute Selector)
+     تنظیمات عمومی ستون‌ها
      -------------------------------------------------------------------------- */
   [class^="col-"] {
-    float: right; // چیدمان راست‌چین (مناسب زبان فارسی)
+    float: right; // پیش‌فرض فارسی (RTL)
 
-    // ایجاد فاصله افقی بین ستون‌ها (به جز ستون انتهایی در سمت چپ)
     &:not(:last-child) {
       margin-left: $gutter-horizontal;
     }
 
-    // فاصله عمودی پیش‌فرض بین ستون‌ها در تبلت عمودی
+    // منطقِ زبان‌آگاه: تنظیمات برای حالت انگلیسی (LTR)
+    &:lang(en) {
+      float: left;
+      &:not(:last-child) {
+        margin-left: 0;
+        margin-right: $gutter-horizontal;
+      }
+    }
+
     @include respond(tab-port) {
       margin-bottom: $gutter-vertical-small;
     }
 
-    // در موبایل (زیر 600px): تمام ستون‌ها عرض کامل گرفته و فاصله افقی حذف می‌شود
     @include respond(phone) {
       width: 100% !important;
       margin-left: 0 !important;
+      margin-right: 0 !important; // اطمینان از حذف مارجین در موبایل
     }
   }
 
   /* --------------------------------------------------------------------------
-     محاسبه عرض ستون‌های کسری (Grid Columns)
+     محاسبات گرید
      -------------------------------------------------------------------------- */
 
-  // ۲ ستونه (عرض هر کدام ۵۰٪ منهای فاصله میانی)
   .col-1-of-2 {
     width: calc((100% - #{$gutter-horizontal}) / 2);
-
-    @include respond(tab-port) {
-      width: 100%;
-    }
   }
 
-  // ۳ ستونه (عرض هر کدام یک‌سوم کل ردیف)
   .col-1-of-3 {
     width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
-
-    @include respond(tab-port) {
-      width: 100%;
-    }
   }
 
-  // ستون با عرض دوسوم
   .col-2-of-3 {
     width: calc(
       2 * ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal}
     );
-
-    @include respond(tab-port) {
-      width: 100%;
-    }
   }
 
-  // --- چیدمان ۴ ستونه (با بهینه‌سازی اختصاصی ۲×۲ در تبلت) ---
   .col-1-of-4 {
     width: calc((100% - 3 * #{$gutter-horizontal}) / 4);
 
-    // در تبلت عمودی (زیر 900px): تبدیل به چیدمان شبکه‌ای دو ستونه (عرض ۵۰٪)
     @include respond(tab-port) {
       width: calc((100% - #{$gutter-horizontal}) / 2) !important;
 
-      // ستون‌های زوج (دوم و چهارم) در لبه چپ قرار گرفته و نباید مارجین چپ داشته باشند
+      // در حالت RTL: ستون زوج نباید مارجین چپ داشته باشد
       &:nth-child(2n) {
         margin-left: 0 !important;
       }
 
-      // دو ستون ردیف بالا به سمت کارت‌های پایینی فاصله عمودی داشته باشند
-      &:nth-child(-n + 2) {
-        margin-bottom: $gutter-vertical-small;
-      }
-    }
-
-    // در موبایل (زیر 600px): تک‌ستونه تمام‌عرض
-    @include respond(phone) {
-      width: 100% !important;
-      margin-left: 0 !important;
-
-      &:not(:last-child) {
-        margin-bottom: $gutter-vertical-small;
+      // در حالت LTR: ستون زوج نباید مارجین راست داشته باشد
+      &:lang(en):nth-child(2n) {
+        margin-right: 0 !important;
       }
     }
   }
 
-  // ستون با عرض ۲ چهارم (معادل نصف)
   .col-2-of-4 {
     width: calc(
       2 * ((100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal}
     );
-
-    @include respond(tab-port) {
-      width: 100%;
-    }
   }
 
-  // ستون با عرض ۳ چهارم
   .col-3-of-4 {
     width: calc(
       3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal}
     );
-
-    @include respond(tab-port) {
-      width: 100%;
-    }
   }
 
   /* --------------------------------------------------------------------------
-     تنظیمات حاشیه امن و حداکثر عرض ردیف در تبلت و موبایل
+     حاشیه امن در سایزهای مختلف
      -------------------------------------------------------------------------- */
   @include respond(tab-port) {
-    max-width: 80rem; // افزایش عرض ردیف برای نشستن زیبای کارت‌های دو ستونه در تبلت
-    padding: 0 3rem; // ایجاد حاشیه امن ۳۰ پیکسلی از لبه‌های تبلت
+    max-width: 80rem;
+    padding: 0 $spacing-md;
   }
 
   @include respond(phone) {
-    max-width: 50rem; // جمع‌وجور شدن کانتینر در موبایل
-    padding: 0 2rem; // حاشیه امن ۲۰ پیکسلی برای جلوگیری از چسبیدن به لبه صفحه گوشی
+    max-width: 50rem;
+    padding: 0 $spacing-sm;
   }
 }

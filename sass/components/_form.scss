@@ -1,7 +1,13 @@
+// ==========================================================================
+// COMPONENT: FORM (فرم تماس، استعلام و ثبت سفارش قالپاق)
+// ==========================================================================
+// شامل: فیلدهای متنی و ایمیل با اعتبارسنجی زنده، انیمیشن جذاب Floating Label،
+// دکمه‌های رادیویی سفارشی‌شده دسترس‌پذیر (Custom Radio Buttons)، و تطبیق ریسپانسیو.
+
 .form {
   &__group {
     &:not(:last-child) {
-      margin-bottom: 2rem;
+      margin-bottom: $spacing-sm;
     }
   }
 
@@ -10,14 +16,14 @@
     font-size: 1.5rem;
     font-family: inherit;
     color: inherit;
-    padding: 1.5rem 2rem;
-    border-radius: 3px;
+    padding: 1.5rem $spacing-sm;
+    border-radius: $border-radius-small;
     background-color: rgba($color-white, 0.9);
     border: none;
     border-bottom: 3px solid transparent;
     width: 90%;
     display: block;
-    transition: all 0.3s;
+    transition: all $transition-fast;
 
     // در تبلت و موبایل تمام‌عرض شود
     @include respond(tab-port) {
@@ -31,22 +37,31 @@
     }
 
     &:focus:invalid {
-      border-bottom: 3px solid #e53935;
+      border-bottom: 3px solid $color-danger;
     }
 
+    // استایل متن نگهدارنده (پلیس‌هولدر) در تمام مرورگرها
+    &::placeholder,
     &::-webkit-input-placeholder {
       color: $color-grey-dark-2;
     }
   }
 
-  // ۲. استایل و رفتار لیبل شناور
+  // ۲. استایل و رفتار لیبل شناور (Floating Label)
   &__label {
     font-size: 1.2rem;
-    font-weight: 700;
-    margin-right: 2rem;
+    font-weight: $font-weight-bold;
     margin-top: 0.7rem;
     display: block;
-    transition: all 0.3s;
+    transition: all $transition-fast;
+
+    // فاصله در زبان فارسی و انگلیسی
+    &:lang(fa) {
+      margin-right: $spacing-sm;
+    }
+    &:lang(en) {
+      margin-left: $spacing-sm;
+    }
   }
 
   &__input:placeholder-shown + &__label {
@@ -63,19 +78,29 @@
     // در تبلت و موبایل زیر هم قرار بگیرند
     @include respond(tab-port) {
       width: 100%;
-      margin-bottom: 2rem;
+      margin-bottom: $spacing-sm;
     }
   }
 
+  // مخفی‌سازی با حفظ دسترس‌پذیری کیبورد
   &__radio-input {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
   }
 
   &__radio-label {
-    font-size: $default-font-size;
+    font-size: $font-size-default;
     cursor: pointer;
     position: relative;
     padding-right: 4.5rem;
+    display: inline-block;
+
+    // تنظیمات جهت در حالت انگلیسی
+    &:lang(en) {
+      padding-right: 0;
+      padding-left: 4.5rem;
+    }
   }
 
   &__radio-button {
@@ -85,8 +110,13 @@
     border-radius: 50%;
     display: inline-block;
     position: absolute;
-    right: 0;
     top: -0.4rem;
+    right: 0;
+
+    &:lang(en) {
+      right: auto;
+      left: 0;
+    }
 
     &::after {
       content: "";
@@ -100,11 +130,18 @@
       transform: translate(-50%, -50%);
       background-color: $color-primary;
       opacity: 0;
-      transition: opacity 0.2s;
+      transition: opacity $transition-fast;
     }
   }
 
+  // نمایش دایره داخلی با انتخاب رادیو باتن
   &__radio-input:checked ~ &__radio-label &__radio-button::after {
     opacity: 1;
+  }
+
+  // خط فوکوس ظریف برای دسترس‌پذیری با کیبورد (Tab)
+  &__radio-input:focus-visible ~ &__radio-label &__radio-button {
+    outline: 2px solid $color-gold;
+    outline-offset: 3px;
   }
 }

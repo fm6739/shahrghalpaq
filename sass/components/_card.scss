@@ -1,5 +1,11 @@
+// ==========================================================================
+// COMPONENT: CARD (کارت‌های معرفی محصولات / قالپاق‌ها)
+// ==========================================================================
+// شامل: استایل کارت‌های چرخان سه‌بعدی، وضعیت‌های front و back، مدیریت ریسپانسیو
+// و حالت مخصوص دستگاه‌های لمسی بدون قابلیت hover طبق استانداردهای پیشرفته جوناس.
+
 .card {
-  // کارکرد سه‌بعدی (FUNCTIONALITY)
+  // کارایی سه‌بعدی (3D perspective)
   perspective: 150rem;
   -moz-perspective: 150rem;
   position: relative;
@@ -7,14 +13,14 @@
 
   &__side {
     height: 52rem;
-    transition: all 0.8s ease;
+    transition: all $card-transition ease;
     position: absolute;
     top: 0;
     right: 0;
     width: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border-radius: 6px;
+    border-radius: $border-radius-medium;
     overflow: hidden;
     box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
 
@@ -32,7 +38,6 @@
           $color-primary-dark
         );
       }
-
       &-2 {
         background-image: linear-gradient(
           to right bottom,
@@ -40,7 +45,6 @@
           $color-gold-dark
         );
       }
-
       &-3 {
         background-image: linear-gradient(
           to right bottom,
@@ -51,6 +55,7 @@
     }
   }
 
+  // انیمیشن چرخش هنگام هاور
   &:hover &__side--front {
     transform: rotateY(180deg);
   }
@@ -59,15 +64,15 @@
     transform: rotateY(0);
   }
 
-  // سربرگ تصویری کارت (FRONT SIDE STYLING)
+  // بخش تصویر بالای کارت
   &__picture {
     background-size: cover;
     height: 23rem;
     background-blend-mode: screen;
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
+    border-top-left-radius: $border-radius-medium;
+    border-top-right-radius: $border-radius-medium;
 
     &--1 {
       background-image:
@@ -76,15 +81,13 @@
           $color-primary-light,
           $color-primary-dark
         ),
-        url(../img/ghalpaq-1.webp);
+        url(../img/ghalpaq-1-6.png);
     }
-
     &--2 {
       background-image:
         linear-gradient(to right bottom, $color-gold-light, $color-gold-dark),
-        url(../img/ghalpaq-2.webp);
+        url(../img/ghalpaq-2-11.png);
     }
-
     &--3 {
       background-image:
         linear-gradient(
@@ -92,23 +95,24 @@
           $color-grey-dark-2,
           $color-grey-dark-3
         ),
-        url(../img/ghalpaq-3.webp);
+        url(../img/ghalpaq-4-7.png);
     }
   }
 
+  // تیتر روی تصویر کارت
   &__heading {
-    font-size: 2.4rem;
-    font-weight: 300;
+    font-size: $font-size-medium;
+    font-weight: $font-weight-light;
     text-align: right;
     color: $color-white;
     position: absolute;
     top: 12rem;
-    right: 2rem;
+    right: $spacing-sm;
     width: 70%;
   }
 
   &__heading-span {
-    padding: 1rem 1.5rem;
+    padding: $spacing-xs 1.5rem;
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
 
@@ -119,7 +123,6 @@
         rgba($color-primary-dark, 0.85)
       );
     }
-
     &--2 {
       background-image: linear-gradient(
         to right bottom,
@@ -127,7 +130,6 @@
         rgba($color-gold-dark, 0.85)
       );
     }
-
     &--3 {
       background-image: linear-gradient(
         to right bottom,
@@ -137,8 +139,9 @@
     }
   }
 
+  // لیست مشخصات کارت
   &__details {
-    padding: 3rem;
+    padding: $spacing-md;
 
     ul {
       list-style: none;
@@ -147,8 +150,8 @@
 
       li {
         text-align: center;
-        font-size: 1.4rem;
-        padding: 1rem;
+        font-size: $font-size-small;
+        padding: $spacing-xs;
         color: $color-grey-dark-3;
 
         &:not(:last-child) {
@@ -158,7 +161,7 @@
     }
   }
 
-  // پشت کارت (BACK SIDE STYLING)
+  // پشت کارت (بخش قیمت و دکمه خرید)
   &__cta {
     position: absolute;
     top: 50%;
@@ -171,25 +174,29 @@
   &__price-box {
     text-align: center;
     color: $color-white;
-    margin-bottom: 6rem;
+    margin-bottom: $spacing-xl;
   }
 
   &__price-only {
-    font-size: 1.4rem;
-    text-transform: uppercase;
+    font-size: $font-size-small;
+
+    &:lang(en) {
+      text-transform: uppercase;
+    }
   }
 
   &__price-value {
-    font-size: 4.5rem;
-    font-weight: 100;
-    margin: 1rem 0;
+    font-size: $font-size-huge;
+    font-weight: $font-weight-light;
+    margin: $spacing-xs 0;
   }
-  // ==========================================
-  // مدیاکوئری برای تبلت و موبایل (تبدیل کارت‌های چرخان به کارت‌های تخت و یکپارچه)
-  // ==========================================
-  @include respond(tab-port) {
+
+  // ==========================================================================
+  // حالت واکنش‌گرا (ریسپانسیو تبلت و موبایل یا صفحات لمسی بدون هاور)
+  // ==========================================================================
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
     height: auto;
-    border-radius: 6px;
+    border-radius: $border-radius-medium;
     background-color: $color-white;
     box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
 
@@ -200,10 +207,11 @@
 
       &--back {
         transform: rotateY(0);
+        -webkit-clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
         clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
-        margin-top: -3rem;
-        border-bottom-left-radius: 6px;
-        border-bottom-right-radius: 6px;
+        margin-top: -$spacing-md;
+        border-bottom-left-radius: $border-radius-medium;
+        border-bottom-right-radius: $border-radius-medium;
       }
     }
 
@@ -211,29 +219,25 @@
       transform: rotateY(0);
     }
 
-    // تنظیم عکس با پس‌زمینه سنتر
     &__picture {
       height: 30rem;
       background-position: center;
     }
 
-    // بزرگ کردن عنوان روی عکس هدر برای خوانایی بیشتر
     &__heading {
-      font-size: 2.8rem;
+      font-size: $font-size-large;
       width: 60%;
     }
 
-    // تقویت فونت و خوانایی لیست مشخصات
     &__details {
-      padding: 2.5rem 4rem;
+      padding: 2.5rem $spacing-lg;
 
       ul {
         width: 90%;
-        margin: 0 auto;
 
         li {
-          font-size: 1.8rem; // افزایش سایز فونت لیست برای خوانایی عالی
-          padding: 1.5rem; // فضای بیشتر و تنفس‌دار بین آیتم‌ها
+          font-size: $font-size-medium;
+          padding: 1.5rem;
         }
       }
     }
@@ -244,34 +248,16 @@
       left: 0;
       transform: translate(0);
       width: 100%;
-      padding: 4rem 4rem 5rem 4rem;
+      padding: $spacing-lg;
       text-align: center;
     }
 
     &__price-box {
-      margin-bottom: 3rem;
-    }
-
-    // درشت‌تر و خواناتر کردن قیمت در تبلت
-    &__price-value {
-      font-size: 4.5rem;
-    }
-    &__price-box {
-      margin-bottom: 3rem;
-    }
-
-    // بزرگ کردن متن‌های بالا و پایین قیمت برای هماهنگی با قیمت اصلی
-    &__price-only {
-      font-size: 1.8rem; // افزایش سایز متن "شروع قیمت از"
+      margin-bottom: $spacing-md;
     }
 
     &__price-value {
-      font-size: 4.5rem;
-    }
-
-    // بزرگ کردن متن "تومان (دست ۴ عددی)"
-    &__price-text {
-      font-size: 1.8rem;
+      font-size: $font-size-huge;
     }
   }
 }

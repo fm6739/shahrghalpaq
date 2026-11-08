@@ -1,28 +1,114 @@
-// COLORS
+// ==========================================================================
+// 1. COLOR SYSTEM (پالت رنگ‌های اصلی، فرعی و برندها)
+// ==========================================================================
+
+// --- رنگ‌های اصلی برند (سبز سازمانی شهر قالپاق) ---
 $color-primary: #0f5132;
 $color-primary-light: #198754;
 $color-primary-dark: #08331f;
 
+// --- رنگ‌های ثانویه و تأکیدی (طیف طلایی لوکس) ---
 $color-gold: #c9a441;
 $color-gold-light: #dfc168;
 $color-gold-dark: #9f7d24;
 
+// --- رنگ‌های خنثی و خاکستری روشن ---
 $color-grey-light-1: #f7f7f7;
 $color-grey-light-2: #eee;
 
+// --- رنگ‌های خنثی و خاکستری تیره (متون و کادرها) ---
 $color-grey-dark: #777;
 $color-grey-dark-1: #666;
 $color-grey-dark-2: #999;
 $color-grey-dark-3: #333;
 
+// --- رنگ‌های خالص پایه ---
 $color-white: #fff;
 $color-black: #000;
 
-// FONT
-$default-font-size: 1.7rem;
+$color-danger: #e53935; // رنگ هشدار و خطای اعتبارسنجی فرم
 
-// GRID
+// --- رنگ‌های اختصاصی پلتفرم‌های ایرانی و مسیریاب‌ها ---
+$color-balad: #00a693;
+$color-neshan: #2b78e4;
+$color-rubika-start: #782bfb;
+$color-rubika-end: #00b0ff;
+
+// ==========================================================================
+// 2. GRID & LAYOUT (تنظیمات ساختار شبکه و فاصله‌ها)
+// ==========================================================================
+
 $grid-width: 114rem;
 $gutter-vertical: 8rem;
 $gutter-vertical-small: 6rem;
 $gutter-horizontal: 6rem;
+
+// ==========================================
+// SPACING SCALE (سیستم جامع فاصله‌گذاری)
+// ==========================================
+$spacing-xxs: 0.5rem;
+$spacing-xs: 1rem;
+$spacing-sm: 2rem;
+$spacing-md: 3rem;
+$spacing-lg: 4rem;
+$spacing-xl: 6rem;
+$spacing-xxl: 8rem;
+
+// ==========================================================================
+// 3. TYPOGRAPHY SYSTEM (سیستم تایپوگرافی و مقیاس متون)
+// ==========================================================================
+
+// --- اندازه‌های قلم (Font Sizes) ---
+$font-size-tiny: 1.2rem; // برچسب‌های ریز، کپی‌رایت فوتر، متون راهنما
+$font-size-small: 1.4rem; // زیرنویس‌ها، توضیحات فرعی، دکمه‌های ثانویه
+$font-size-default: 1.6rem; // متن اصلی پاراگراف‌ها
+$default-font-size: 1.6rem; // برای سازگاری کامل با استایل‌های پایه دوره ناتورز
+$font-size-medium: 1.8rem; // تیترهای داخل کارت‌ها و متون تاکیدی
+$font-size-large: 2rem; // عنوان‌های اصلی سرفصل‌ها و کارت‌های ویژه
+$font-size-huge: 4.5rem; // برای فونت قیمت‌های بزرگ
+
+// --- وزن‌های استاندارد قلم (Font Weights) ---
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+
+// ==========================================================================
+// 4. MULTI-LANGUAGE / i18n (تایپوگرافی تفکیکی فارسی و انگلیسی)
+// ==========================================================================
+
+// --- ارتفاع خط (Line Heights) ---
+// فارسی: به دلیل اعراب، دندانه و نقطه‌ها نیازمند ارتفاع بیشتری است
+$line-height-body-fa: 1.8;
+$line-height-heading-fa: 1.3;
+
+// انگلیسی: فشرده‌تر و متناسب با فونت‌های لاتین
+$line-height-body-en: 1.6;
+$line-height-heading-en: 1.15;
+
+// --- تنظیمات مورفولوژیک تیترها (Letter-spacing & Transform) ---
+// انگلیسی: حروف بزرگ و بازتر برای جلوه پرمیوم
+$ls-heading-en: 0.1rem;
+$transform-heading-en: uppercase;
+
+// فارسی: بدون کشیدگی و بدون تبدیل برای حفظ اتصالات و خوشنویسی
+$ls-heading-fa: normal;
+$transform-heading-fa: none;
+
+// ==========================================================================
+// 5. UI COMPONENTS UTILITIES (جزئیات طراحی المان‌ها)
+// ==========================================================================
+
+// --- انحنای گوشه‌ها (Border Radius) ---
+$border-radius-small: 3px;
+$border-radius-round: 100px; // دکمه‌های کپسولی
+$border-radius-medium: 6px;
+$border-radius-circle: 50%;
+
+// --- ترانزیشن استاندارد ---
+$default-transition: all 0.2s ease;
+$card-transition: 0.8s; // ترانزیشن مخصوص چرخش کارت
+$transition-slow: 0.8s;
+$transition-medium: 0.5s;
+$transition-fast: 0.2s;

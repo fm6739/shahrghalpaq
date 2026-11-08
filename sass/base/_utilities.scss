@@ -1,15 +1,55 @@
-.u-margin-bottom-big {
-  margin-bottom: 8rem !important;
-}
-
-.u-margin-bottom-medium {
-  margin-bottom: 4rem !important;
-}
-
-.u-margin-bottom-small {
-  margin-bottom: 1.5rem !important;
-}
+// ==========================================
+// BASE: UTILITIES
+// ==========================================
 
 .u-center-text {
   text-align: center !important;
+}
+
+// Margin Bottom Utilities (سیستم توکن‌های فاصله‌گذاری)
+.u-margin-bottom-sm,
+.u-margin-bottom-small {
+  margin-bottom: $spacing-sm !important; // 2rem
+}
+
+.u-margin-bottom-md,
+.u-margin-bottom-medium {
+  margin-bottom: $spacing-lg !important; // 4rem
+
+  @include respond(tab-port) {
+    margin-bottom: $spacing-md !important; // 3rem در تبلت
+  }
+}
+
+.u-margin-bottom-lg,
+.u-margin-bottom-big {
+  margin-bottom: $spacing-xxl !important; // 8rem (فاصله استاندارد تیتر سکشن‌های جوناس)
+
+  @include respond(tab-port) {
+    margin-bottom: $spacing-lg !important; // 5rem یا 4rem در تبلت
+  }
+}
+
+// Margin Top Utilities
+.u-margin-top-sm,
+.u-margin-top-small {
+  margin-top: $spacing-sm !important; // 2rem
+}
+
+.u-margin-top-md,
+.u-margin-top-medium {
+  margin-top: $spacing-lg !important; // 4rem
+}
+
+.u-margin-top-lg,
+.u-margin-top-big {
+  margin-top: $spacing-xl !important; // 6rem
+}
+
+.u-margin-top-huge {
+  margin-top: 10rem !important; // فاصله اختصاصی دکمه‌های انتهای سکشن طبق دوره جوناس
+
+  @include respond(tab-port) {
+    margin-top: $spacing-xl !important; // 6rem در تبلت
+  }
 }

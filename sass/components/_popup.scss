@@ -1,8 +1,8 @@
-// ==========================================
-// کامپوننت پاپ‌آپ (مشخصات فنی و جزئیات محصول)
-// پروژه: شهر قالپاق
-// معماری: Sass 7-1 (پوشه components)
-// ==========================================
+// ==========================================================================
+// COMPONENT: POPUP (پنجره مودال جزئیات محصول و مشخصات فنی قالپاق)
+// ==========================================================================
+// شامل: افکت شیشه‌ای Backdrop Blur، انیمیشن باز شدن نرم و زوم مقیاسی با Target،
+// ستون‌بندی داینامیک متون، اسکرول ایمن در موبایل و انطباق کامل عکس‌ها در تبلت و موبایل.
 
 .popup {
   // پوشش کل صفحه به عنوان لایه پس‌زمینه تیره
@@ -15,7 +15,7 @@
   z-index: 9999;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s;
+  transition: all $transition-medium;
 
   // افکت مات شدن مدرن پس‌زمینه (Backdrop Filter) در مرورگرهای پشتیبانی‌کننده
   @supports (-webkit-backdrop-filter: blur(10px)) or
@@ -30,20 +30,21 @@
     position: absolute;
     top: 50%;
     left: 50%;
-
     width: 75%;
+    max-height: 90vh; // جلوگیری از سرریز شدن در صفحات با ارتفاع کم
+    overflow-y: auto; // اسکرول ایمن در صورت طولانی بودن محتوا
     background-color: $color-white;
     box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
-    border-radius: 3px;
+    border-radius: $border-radius-small;
     display: table;
-    overflow: hidden;
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.25);
-    transition: all 0.5s 0.2s;
+    transition: all 0.5s $transition-fast;
 
     // ریسپانسیو: افزایش عرض کادر در تبلت و موبایل برای پر کردن مناسب صفحه
     @include respond(tab-port) {
       width: 90%;
+      display: block; // تغییر ساختار در تبلت برای اسکرول روان‌تر
     }
   }
 
@@ -56,7 +57,8 @@
     @include respond(tab-port) {
       width: 100%;
       display: flex;
-      padding: 2rem 2rem 0 2rem;
+      gap: $spacing-xs;
+      padding: $spacing-sm $spacing-sm 0 $spacing-sm;
     }
   }
 
@@ -65,13 +67,13 @@
     width: 66.666667%;
     display: table-cell;
     vertical-align: middle;
-    padding: 3rem 5rem;
+    padding: $spacing-md 5rem;
 
     // ریسپانسیو: چیدمان زیر عکس‌ها با پدینگ متناسب
     @include respond(tab-port) {
       width: 100%;
       display: block;
-      padding: 3rem 3rem 4rem 3rem;
+      padding: $spacing-md $spacing-md $spacing-lg $spacing-md;
       text-align: center;
     }
   }
@@ -86,7 +88,7 @@
       width: 50%;
       height: 22rem;
       object-fit: cover;
-      border-radius: 4px;
+      border-radius: $border-radius-small;
     }
 
     // در حالت موبایل: مخفی کردن عکس دوم و تمام‌عرض شدن عکس اول
@@ -100,26 +102,31 @@
 
   // متن مشخصات با ستون‌بندی روزنامه‌ای (CSS Columns)
   &__text {
-    font-size: 1.4rem;
-    margin-bottom: 4rem;
-
+    font-size: $font-size-small;
+    margin-bottom: $spacing-lg;
     text-align: justify;
     line-height: 1.8;
 
     // دو ستونه کردن متن در دسکتاپ با خط جداکننده میانی
     -moz-column-count: 2;
-    -moz-column-gap: 4rem;
+    -moz-column-gap: $spacing-lg;
     -moz-column-rule: 1px solid $color-grey-light-2;
 
     column-count: 2;
-    column-gap: 4rem;
+    column-gap: $spacing-lg;
     column-rule: 1px solid $color-grey-light-2;
 
-    // تنظیمات شکست کلمات
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
+    // مدیریت شکست کلمات اختصاصی زبان‌ها
+    &:lang(en) {
+      -moz-hyphens: auto;
+      -ms-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+
+    &:lang(fa) {
+      hyphens: manual;
+    }
 
     // ریسپانسیو: تبدیل به متن تک‌ستونه در تبلت و موبایل جهت خوانایی بهتر
     @include respond(tab-port) {
@@ -129,7 +136,7 @@
       column-gap: 0;
       -moz-column-rule: none;
       column-rule: none;
-      margin-bottom: 2.5rem;
+      margin-bottom: $spacing-sm;
     }
   }
 
@@ -139,27 +146,34 @@
     &:visited {
       color: $color-grey-dark;
       position: absolute;
-      top: 2.5rem;
-      left: 2.5rem;
+      top: 2rem;
+      left: 2rem;
       font-size: 3rem;
       text-decoration: none;
       display: inline-block;
-      transition: all 0.2s;
+      transition: all $transition-fast;
       line-height: 1;
       z-index: 1000;
-
-      // پدینگ ثابت تا باکس همیشه جای خودش رو داشته باشه و نپره
       padding: 0.5rem 1rem;
-      border-radius: 50%;
+      border-radius: $border-radius-round;
       background-color: transparent;
+
+      // در حالت انگلیسی ضربدر در سمت راست قرار گیرد
+      &:lang(en) {
+        left: auto;
+        right: 2rem;
+      }
     }
 
     &:hover {
       color: $color-primary;
-      // رنگ پس‌زمینه رو کمی تیره‌تر کردیم تا روی سفید قشنگ دیده بشه
-      background-color: rgba($color-grey-dark, 0.2);
-      // به جای تغییر پدینگ، از بزرگ‌نمایی استفاده می‌کنیم که حرکت نکنه
+      background-color: rgba($color-grey-dark, 0.1);
       transform: scale(1.1);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
     }
   }
 

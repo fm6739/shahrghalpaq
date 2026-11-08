@@ -1,37 +1,71 @@
+// ==========================================================================
+// COMPONENT: BUTTONS & TEXT BUTTONS
+// استایل دکمه‌های اصلی و دکمه‌های متنی
+// ==========================================================================
+
 .btn {
   &,
   &:link,
   &:visited {
-    // text-transform: uppercase;
-    text-decoration: none;
-    padding: 1.5rem 5rem;
     display: inline-block;
-    border-radius: 10rem;
-    transition: all 0.2s;
-    position: relative;
-    font-size: $default-font-size;
-
-    // تغییر استایل دکمه‌های تگ <button>
+    padding: 1.5rem 4rem;
     border: none;
+    border-radius: $border-radius-round;
+
+    font-size: $font-size-default;
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+
     cursor: pointer;
+    position: relative;
+    transition: $default-transition;
+
+    // تنظیمات متناسب با زبان متن دکمه
+    &:lang(fa) {
+      text-transform: $transform-heading-fa;
+      letter-spacing: $ls-heading-fa;
+    }
+
+    &:lang(en) {
+      text-transform: $transform-heading-en;
+      letter-spacing: $ls-heading-en;
+    }
   }
 
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
 
-    // وقتی ماوس میاد روی دکمه، لایه مخفی پشتش بزرگ و شفاف میشه (حالت انفجار)
+    // محو شدن لایه‌ی تزئینی هنگام هاور
     &::after {
       transform: scaleX(1.4) scaleY(1.6);
       opacity: 0;
     }
   }
 
-  &:active,
-  &:focus {
-    outline: none;
+  // حالت فعال؛ برای نمونه هنگام فشردن دکمه
+  &:active {
     transform: translateY(-1px);
     box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  // نشانگر واضح برای کاربرانی که با صفحه‌کلید حرکت می‌کنند
+  &:focus-visible {
+    outline: 0.3rem solid $color-gold-light;
+    outline-offset: 0.3rem;
+  }
+
+  // ------------------------------------------------------------------------
+  // Modifierها: رنگ‌بندی دکمه
+  // ------------------------------------------------------------------------
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark-3;
+
+    &::after {
+      background-color: $color-white;
+    }
   }
 
   &--gold {
@@ -42,6 +76,7 @@
       background-color: $color-gold-dark;
     }
   }
+
   &--green {
     background-color: $color-primary;
     color: $color-white;
@@ -51,35 +86,60 @@
     }
   }
 
-  // لایه مخفی که دقیقا هم‌اندازه و زیر دکمه قرار می‌گیره تا افکت انفجاری ساخته بشه
+  // لایه‌ی تزئینی پشت دکمه برای افکت هاور
   &::after {
     content: "";
     display: inline-block;
-    height: 100%;
     width: 100%;
-    border-radius: 10rem;
+    height: 100%;
+
+    border-radius: $border-radius-round;
+
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     z-index: -1;
-    transition: all 0.4s;
+
+    pointer-events: none;
+    transition: $default-transition;
   }
 
+  // انیمیشن ورود دکمه
   &--animated {
     animation: moveInBottom 0.5s ease-out 0.75s;
     animation-fill-mode: backwards;
   }
 }
+
+// ==========================================================================
+// COMPONENT: TEXT BUTTON
+// دکمه‌ی متنیِ لینک‌مانند
+// ==========================================================================
+
 .btn-text {
   &:link,
   &:visited {
-    font-size: $default-font-size;
-    color: $color-gold-dark;
     display: inline-block;
-    text-decoration: none;
+    padding: 0.3rem;
+
     border-bottom: 1px solid $color-gold-dark;
-    padding: 3px;
-    transition: all 0.2s;
+    border-radius: $border-radius-small;
+
+    color: $color-gold-dark;
+    font-size: $font-size-default;
+    text-decoration: none;
+
+    transition: $default-transition;
+
+    // تنظیمات متناسب با زبان متن لینک
+    &:lang(fa) {
+      text-transform: $transform-heading-fa;
+      letter-spacing: $ls-heading-fa;
+    }
+
+    &:lang(en) {
+      text-transform: $transform-heading-en;
+      letter-spacing: $ls-heading-en;
+    }
   }
 
   &:hover {
@@ -92,5 +152,11 @@
   &:active {
     box-shadow: 0 0.5rem 1rem rgba($color-black, 0.15);
     transform: translateY(0);
+  }
+
+  // نشانگر فوکوس برای پیمایش با صفحه‌کلید
+  &:focus-visible {
+    outline: 0.3rem solid $color-gold-dark;
+    outline-offset: 0.3rem;
   }
 }

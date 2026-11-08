@@ -1,25 +1,53 @@
+// ==========================================================================
+// COMPONENT: FEATURE BOX (کارت‌های خدمات و مزایای شهر قالپاق)
+// ==========================================================================
+
 .feature-box {
   background-color: rgba($color-white, 0.92);
-  padding: 3rem 2.5rem;
+  padding: $spacing-sm; // معادل 2rem برای داشتن فضای تنفس مناسب
+  font-size: $font-size-default;
   text-align: center;
-  border-radius: 6px;
+  border-radius: $border-radius-small;
   box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
-  transition: all 0.3s;
-  border-top: 4px solid $color-gold;
+  transition: transform 0.3s ease;
+  border-top: 4px solid $color-gold-dark; // استفاده از رنگ سازمانی استاندارد
   min-height: 28rem;
 
   &:hover {
-    transform: translateY(-1rem) scale(1.02);
+    transform: translateY(-1.5rem) scale(1.03);
     box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
   }
 
+  &__icon {
+    font-size: 6rem;
+    width: 6rem;
+    height: 6rem;
+    margin-bottom: $spacing-xs; // استفاده از توکن فاصله
+    display: inline-block;
+
+    // تنظیمات SVG آیکون‌ها
+    fill: none;
+    stroke: $color-gold-dark;
+    stroke-width: 1.8;
+  }
+
+  // استایل اختصاصی برای تیتر کارت‌ها (تیتر سوم)
   .heading-tertiary {
     color: $color-primary;
+    margin-bottom: $spacing-xxs; // فاصله استاندارد با متن زیرین
   }
 
   &__text {
-    font-size: $default-font-size;
-    line-height: 2;
     color: $color-grey-dark-3;
+    font-size: $font-size-small;
+
+    // مدیریت خطوط متن برای زبان‌های فارسی و انگلیسی
+    &:lang(fa) {
+      line-height: $line-height-body-fa;
+    }
+
+    &:lang(en) {
+      line-height: $line-height-body-en;
+    }
   }
 }
