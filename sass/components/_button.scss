@@ -45,6 +45,7 @@
 
   // حالت فعال؛ برای نمونه هنگام فشردن دکمه
   &:active {
+    outline: none;
     transform: translateY(-1px);
     box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
   }
@@ -86,21 +87,18 @@
     }
   }
 
-  // لایه‌ی تزئینی پشت دکمه برای افکت هاور
+  // لایه مخفی که دقیقا هم‌اندازه و زیر دکمه قرار می‌گیره تا افکت انفجاری ساخته بشه
   &::after {
     content: "";
     display: inline-block;
-    width: 100%;
     height: 100%;
-
+    width: 100%;
     border-radius: $border-radius-round;
-
     position: absolute;
     inset: 0;
     z-index: -1;
-
     pointer-events: none;
-    transition: $default-transition;
+    transition: all $transition-btn-modifier;
   }
 
   // انیمیشن ورود دکمه
@@ -119,15 +117,12 @@
   &:link,
   &:visited {
     display: inline-block;
-    padding: 0.3rem;
-
+    padding: 3px;
     border-bottom: 1px solid $color-gold-dark;
     border-radius: $border-radius-small;
-
     color: $color-gold-dark;
     font-size: $font-size-default;
     text-decoration: none;
-
     transition: $default-transition;
 
     // تنظیمات متناسب با زبان متن لینک

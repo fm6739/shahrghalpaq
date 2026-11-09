@@ -81,9 +81,23 @@ html:lang(en) {
 
 body {
   box-sizing: border-box;
+  padding: 3rem;
+}
+@media only screen and (max-width: 56.25em) {
+  body {
+    padding: 0;
+  }
+}
+
+/* ==========================================================================
+   Typography Styles - سبک‌های تایپوگرافی سایت شهر قالپاق
+   طراحی‌شده با متدولوژی BEM و معماری Sass 7-1
+   کاملاً بهینه‌سازی‌شده برای زبان فارسی و انگلیسی (i18n)
+   ========================================================================== */
+body {
   font-weight: 400;
   color: #777;
-  padding: 3rem;
+  font-feature-settings: "ss01";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -95,22 +109,12 @@ body:lang(en) {
   font-family: "Lato", sans-serif;
   line-height: 1.6;
 }
-@media only screen and (max-width: 56.25em) {
-  body {
-    padding: 0;
-  }
-}
 
 ::selection {
   background-color: #0f5132;
   color: #fff;
 }
 
-/* ==========================================================================
-   Typography Styles - سبک‌های تایپوگرافی سایت شهر قالپاق
-   طراحی‌شده با متدولوژی BEM و معماری Sass 7-1
-   کاملاً بهینه‌سازی‌شده برای زبان فارسی و انگلیسی (i18n)
-   ========================================================================== */
 .heading-primary {
   color: #fff;
   backface-visibility: hidden;
@@ -134,7 +138,7 @@ body:lang(en) {
 .heading-primary--main {
   display: block;
   font-size: 6.2rem;
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1.2;
   backface-visibility: hidden;
 }
@@ -208,7 +212,7 @@ body:lang(en) {
 }
 
 .heading-tertiary {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 700;
 }
 .heading-tertiary:lang(fa) {
@@ -241,6 +245,7 @@ body:lang(en) {
 @media only screen and (max-width: 56.25em) {
   .paragraph {
     margin-bottom: 2rem;
+    line-height: 1.7;
   }
 }
 
@@ -248,44 +253,36 @@ body:lang(en) {
   text-align: center !important;
 }
 
-.u-margin-bottom-sm,
 .u-margin-bottom-small {
   margin-bottom: 2rem !important;
 }
 
-.u-margin-bottom-md,
 .u-margin-bottom-medium {
   margin-bottom: 4rem !important;
 }
 @media only screen and (max-width: 56.25em) {
-  .u-margin-bottom-md,
   .u-margin-bottom-medium {
     margin-bottom: 3rem !important;
   }
 }
 
-.u-margin-bottom-lg,
 .u-margin-bottom-big {
   margin-bottom: 8rem !important;
 }
 @media only screen and (max-width: 56.25em) {
-  .u-margin-bottom-lg,
   .u-margin-bottom-big {
     margin-bottom: 4rem !important;
   }
 }
 
-.u-margin-top-sm,
 .u-margin-top-small {
   margin-top: 2rem !important;
 }
 
-.u-margin-top-md,
 .u-margin-top-medium {
   margin-top: 4rem !important;
 }
 
-.u-margin-top-lg,
 .u-margin-top-big {
   margin-top: 6rem !important;
 }
@@ -328,6 +325,7 @@ body:lang(en) {
   opacity: 0;
 }
 .btn:active {
+  outline: none;
   transform: translateY(-1px);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
@@ -359,14 +357,14 @@ body:lang(en) {
 .btn::after {
   content: "";
   display: inline-block;
-  width: 100%;
   height: 100%;
+  width: 100%;
   border-radius: 100px;
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  transition: all 0.2s ease;
+  transition: all 0.4s;
 }
 .btn--animated {
   animation: moveInBottom 0.5s ease-out 0.75s;
@@ -375,7 +373,7 @@ body:lang(en) {
 
 .btn-text:link, .btn-text:visited {
   display: inline-block;
-  padding: 0.3rem;
+  padding: 3px;
   border-bottom: 1px solid #9f7d24;
   border-radius: 3px;
   color: #9f7d24;

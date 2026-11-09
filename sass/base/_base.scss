@@ -53,35 +53,10 @@ html {
 // --------------------------------------------------------------------------
 body {
   box-sizing: border-box;
-  font-weight: 400;
-  color: $color-grey-dark;
   padding: $spacing-md; // قاب دور دسکتاپ برگرفته از توکن‌های طراحی
-
-  // شفاف‌سازی و تمیز کردن لبه‌های رندر فونت
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  // تنظیمات هوشمند فونت و فاصله خطوط بر اساس زبان
-  &:lang(fa) {
-    font-family: "Vazirmatn", sans-serif;
-    line-height: $line-height-body-fa;
-  }
-
-  &:lang(en) {
-    font-family: "Lato", sans-serif;
-    line-height: $line-height-body-en;
-  }
 
   // در تبلت عمودی و موبایل قاب دور صفحه حذف می‌شود تا از تمام عرض صفحه استفاده شود
   @include respond(tab-port) {
     padding: 0;
   }
-}
-
-// --------------------------------------------------------------------------
-// استایل سفارشی برای زمان انتخاب/سلکت متن با ماوس
-// --------------------------------------------------------------------------
-::selection {
-  background-color: $color-primary;
-  color: $color-white;
 }

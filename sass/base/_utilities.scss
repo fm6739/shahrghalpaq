@@ -7,12 +7,10 @@
 }
 
 // Margin Bottom Utilities (سیستم توکن‌های فاصله‌گذاری)
-.u-margin-bottom-sm,
 .u-margin-bottom-small {
   margin-bottom: $spacing-sm !important; // 2rem
 }
 
-.u-margin-bottom-md,
 .u-margin-bottom-medium {
   margin-bottom: $spacing-lg !important; // 4rem
 
@@ -21,7 +19,6 @@
   }
 }
 
-.u-margin-bottom-lg,
 .u-margin-bottom-big {
   margin-bottom: $spacing-xxl !important; // 8rem (فاصله استاندارد تیتر سکشن‌های جوناس)
 
@@ -31,17 +28,14 @@
 }
 
 // Margin Top Utilities
-.u-margin-top-sm,
 .u-margin-top-small {
   margin-top: $spacing-sm !important; // 2rem
 }
 
-.u-margin-top-md,
 .u-margin-top-medium {
   margin-top: $spacing-lg !important; // 4rem
 }
 
-.u-margin-top-lg,
 .u-margin-top-big {
   margin-top: $spacing-xl !important; // 6rem
 }
