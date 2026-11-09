@@ -58,7 +58,7 @@
       width: 100%;
       display: flex;
       gap: $spacing-xs;
-      padding: $spacing-sm $spacing-sm 0 $spacing-sm;
+      padding: $spacing-sm $spacing-md 0 $spacing-sm;
     }
   }
 
@@ -81,12 +81,11 @@
   // استایل عکس‌های داخل پاپ‌آپ
   &__img {
     display: block;
-    width: 100%;
-
+    width: 85%;
     // در حالت تبلت: قرارگیری دو عکس در کنار هم با ابعاد متناسب
     @include respond(tab-port) {
       width: 50%;
-      height: 22rem;
+      height: 23rem;
       object-fit: cover;
       border-radius: $border-radius-small;
     }
@@ -96,7 +95,7 @@
       &:nth-child(2) {
         display: none;
       }
-      width: 100%;
+      width: 85%;
     }
   }
 

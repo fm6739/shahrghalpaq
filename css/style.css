@@ -906,7 +906,7 @@ body:lang(en) {
     width: 100%;
     display: flex;
     gap: 1rem;
-    padding: 2rem 2rem 0 2rem;
+    padding: 2rem 3rem 0 2rem;
   }
 }
 .popup__right {
@@ -925,19 +925,19 @@ body:lang(en) {
 }
 .popup__img {
   display: block;
-  width: 100%;
+  width: 85%;
 }
 @media only screen and (max-width: 56.25em) {
   .popup__img {
     width: 50%;
-    height: 22rem;
+    height: 23rem;
     object-fit: cover;
     border-radius: 3px;
   }
 }
 @media only screen and (max-width: 37.5em) {
   .popup__img {
-    width: 100%;
+    width: 85%;
   }
   .popup__img:nth-child(2) {
     display: none;
