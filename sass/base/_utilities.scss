@@ -1,6 +1,8 @@
 // ==========================================
 // BASE: UTILITIES
 // ==========================================
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .u-center-text {
   text-align: center !important;

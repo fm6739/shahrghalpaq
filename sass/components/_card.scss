@@ -3,6 +3,8 @@
 // ==========================================================================
 // شامل: استایل کارت‌های چرخان سه‌بعدی، وضعیت‌های front و back، مدیریت ریسپانسیو
 // و حالت مخصوص دستگاه‌های لمسی بدون قابلیت hover طبق استانداردهای پیشرفته جوناس.
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .card {
   // کارایی سه‌بعدی (3D perspective)
@@ -38,6 +40,7 @@
           $color-primary-dark
         );
       }
+
       &-2 {
         background-image: linear-gradient(
           to right bottom,
@@ -45,6 +48,7 @@
           $color-gold-dark
         );
       }
+
       &-3 {
         background-image: linear-gradient(
           to right bottom,
@@ -83,11 +87,13 @@
         ),
         url(../img/ghalpaq-1-6.png);
     }
+
     &--2 {
       background-image:
         linear-gradient(to right bottom, $color-gold-light, $color-gold-dark),
         url(../img/ghalpaq-2-11.png);
     }
+
     &--3 {
       background-image:
         linear-gradient(
@@ -101,7 +107,7 @@
 
   // تیتر روی تصویر کارت
   &__heading {
-    font-size: $font-size-medium;
+    font-size: $font-size-large;
     font-weight: $font-weight-light;
     text-align: right;
     color: $color-white;
@@ -258,6 +264,19 @@
 
     &__price-value {
       font-size: $font-size-huge;
+    }
+    // بزرگ کردن متن‌های بالا و پایین قیمت برای هماهنگی با قیمت اصلی
+    &__price-only {
+      font-size: 1.8rem; // افزایش سایز متن "شروع قیمت از"
+    }
+
+    &__price-value {
+      font-size: 4.5rem;
+    }
+
+    // بزرگ کردن متن "تومان (دست ۴ عددی)"
+    &__price-text {
+      font-size: 1.8rem;
     }
   }
 }

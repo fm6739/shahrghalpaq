@@ -2,10 +2,12 @@
    صفحه اصلی سایت شهر قالپاق (Home Page Sections)
    طراحی واکنش‌گرا، راست‌چین و بهینه‌سازی شده برای موبایل و تبلت
    ========================================================================== */
-
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 /* --------------------------------------------------------------------------
    سکشن درباره ما / معرفی قالپاق خودروها
    -------------------------------------------------------------------------- */
+
 .section-about {
   background-color: $color-grey-light-1;
   padding: 25rem 0;
@@ -55,10 +57,20 @@
   padding: 25rem 0 15rem 0;
   margin-top: -10rem;
 
+  // ==========================================================================
+  // سکشن محصولات (tours) - ریسپانسیو
+  // ==========================================================================
+
   // کاهش فاصله‌های خالی عمودی برای جلوگیری از اسکرول خسته‌کننده در گوشی
   @include respond(tab-port) {
     padding: 15rem 0 10rem 0;
     margin-top: -8rem;
+    // در تبلت و موبایل، کارت‌های محصول به‌صورت تک‌ستونه چیده می‌شوند.
+    .col-1-of-3 {
+      width: 100% !important;
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+    }
   }
 
   @include respond(phone) {
@@ -121,7 +133,7 @@
     linear-gradient(
       -105deg,
       rgba($color-white, 0.9) 0%,
-      rgba($color-white, 0.9) 50%,
+      rgba($color-white, 0.9) 55%,
       transparent 50%
     ),
     url("../img/hero.webp");
@@ -155,7 +167,7 @@
 
   // بخش درونی فرم سفارش
   &__form {
-    width: 50%;
+    width: 55%;
     padding: 6rem;
 
     @include respond(tab-land) {

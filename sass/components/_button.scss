@@ -2,6 +2,8 @@
 // COMPONENT: BUTTONS & TEXT BUTTONS
 // استایل دکمه‌های اصلی و دکمه‌های متنی
 // ==========================================================================
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .btn {
   &,

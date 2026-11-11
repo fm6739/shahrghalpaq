@@ -1,20 +1,22 @@
 // ==========================================================================
 // COMPONENT: FEATURE BOX (کارت‌های خدمات و مزایای شهر قالپاق)
 // ==========================================================================
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .feature-box {
   background-color: rgba($color-white, 0.92);
-  padding: $spacing-sm; // معادل 2rem برای داشتن فضای تنفس مناسب
-  font-size: $font-size-default;
+  padding: $spacing-md $spacing-sm; // معادل برای داشتن فضای تنفس مناسب
+  // font-size: $font-size-default;
   text-align: center;
-  border-radius: $border-radius-small;
+  border-radius: $border-radius-medium;
   box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   border-top: 4px solid $color-gold-dark; // استفاده از رنگ سازمانی استاندارد
   min-height: 28rem;
 
   &:hover {
-    transform: translateY(-1.5rem) scale(1.03);
+    transform: translateY(-1rem) scale(1.02);
     box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
   }
 
@@ -39,7 +41,7 @@
 
   &__text {
     color: $color-grey-dark-3;
-    font-size: $font-size-small;
+    font-size: $font-size-default;
 
     // مدیریت خطوط متن برای زبان‌های فارسی و انگلیسی
     &:lang(fa) {

@@ -3,6 +3,8 @@
 // ==========================================================================
 // شامل: گرادینت سبز اختصاصی برند، برش زاویه‌دار (Clip-Path) ریسپانسیو،
 // تنظیم جایگاه لوگو متناسب با RTL/LTR و ترازبندی دقیق متن و دکمه کال‌تو‌اکشن.
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .header {
   height: 85vh; // ارتفاع رزرو برای مرورگرهای فاقد پشتیبانی از clip-path
@@ -26,7 +28,7 @@
         rgba($color-primary-light, 0.8),
         rgba($color-primary-dark, 0.8)
       ),
-      url(../img/hero.webp); // در صورت وجود نسخه با کیفیت‌تر hero-2x.webp جایگزین می‌شود
+      url(../img/hero13.webp); // در صورت وجود نسخه با کیفیت‌تر hero-2x.webp جایگزین می‌شود
   }
 
   // ------------------------------------------------------------------------
@@ -62,12 +64,12 @@
     }
 
     @include respond(tab-port) {
-      top: 3rem;
-      right: 3rem;
+      top: $spacing-md;
+      right: $spacing-md;
 
       &:lang(en) {
         right: auto;
-        left: 3rem;
+        left: $spacing-md;
       }
     }
 
@@ -82,11 +84,21 @@
     }
   }
 
+  // اندازه خود تصویر لوگو
   &__logo {
-    height: 3.5rem;
+    width: 15rem;
+    height: auto;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 1rem 3rem rgba($color-black, 0.4);
 
     @include respond(phone) {
-      height: 3rem;
+      width: 12rem;
+    }
+
+    &:hover {
+      transform: scale(1.08);
+      box-shadow: 0 1.5rem 4rem rgba($color-black, 0.6);
     }
   }
 
